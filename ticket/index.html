@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clan Ticket Bot — заявки в клан в Discord · Wipe Studio</title>
+  <meta name="description" content="Бот заявок для Discord-сервера клана: анкета кандидата, проверка часов Steam, голоса рекрутеров, темы оформления с анимированным баннером.">
+  <meta name="theme-color" content="#f7f6f2">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Wipe Studio">
+  <meta property="og:title" content="Clan Ticket Bot — заявки в клан в Discord · Wipe Studio">
+  <meta property="og:description" content="Бот заявок для Discord-сервера клана: анкета кандидата, проверка часов Steam, голоса рекрутеров, темы оформления с анимированным баннером.">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:url" content="https://wipe-studio.github.io/ticket/">
+  <meta property="og:image" content="https://wipe-studio.github.io/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Wipe Studio — боты и оформление Discord для кланов Rust">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://wipe-studio.github.io/ticket/">
+  <link rel="icon" href="../assets/logo/mark.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/logo/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/logo/apple-touch-icon.png">
+  <link rel="preload" href="../assets/fonts/manrope-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/discord.css">
+  <link rel="stylesheet" href="../assets/css/ticket.css">
+  <script>document.documentElement.classList.add("js")</script>
+</head>
+<body class="theme-ticket">
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="../" aria-label="Wipe Studio — на главную">
+        <img src="../assets/logo/mark.svg" alt="" width="28" height="28">
+        <span>Wipe Studio</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Открыть меню"><span></span></button>
+      <nav class="nav" id="site-nav" aria-label="Главное меню">
+        <a href="../#bots" aria-current="page">Боты</a>
+        <a href="../#design">Оформление</a>
+        <a href="../#services">Услуги</a>
+        <a href="../#about">О студии</a>
+        <a href="#contacts">Контакты</a>
+        <a class="btn" href="#contacts">Написать</a>
+      </nav>
+      <a class="btn btn--sm btn--header" href="#contacts">Написать</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ===== 1. Шапка бота ===== -->
+    <section class="bot-hero" aria-labelledby="bot-title">
+      <div class="container bot-hero__grid">
+        <div data-reveal>
+          <nav class="breadcrumbs" aria-label="Хлебные крошки">
+            <a href="../">Главная</a> → <a href="../#bots">Боты</a> → <span aria-current="page">Clan Ticket Bot</span>
+          </nav>
+          <div class="bot-hero__id">
+            <img class="bot-hero__avatar" src="../assets/img/avatars/ticket.webp" alt="Аватарка Clan Ticket Bot" width="64" height="64">
+            <span class="badge">По приглашению</span>
+          </div>
+          <h1 id="bot-title">Clan Ticket Bot</h1>
+          <p class="lead">Заявки в клан прямо в Discord. Кандидат заполняет анкету, рекрутеры решают одной кнопкой.</p>
+          <div class="btn-row">
+            <a class="btn btn--accent" href="#contacts">Хочу такого бота</a>
+            <a class="btn btn--ghost" href="#demo">Попробовать демо</a>
+          </div>
+        </div>
+
+        <div class="hero-preview" data-reveal="scale" aria-label="Так выглядит панель бота в Discord">
+          <div class="dc" style="--dc-h:auto">
+            <div class="dc__bar"><span class="dc__dots"></span><span class="dc__hash">#</span><span class="dc__channel">набор</span><span class="dc__topic">Заявки в UERITY TEAM</span></div>
+            <div class="dc__log">
+              <div class="dc-msg">
+                <img class="dc-msg__avatar" src="../assets/img/avatars/ticket.webp" alt="" width="40" height="40">
+                <div class="dc-msg__body">
+                  <div class="dc-msg__head"><span class="dc-msg__name" style="color:#FF6B35">Clan Ticket Bot</span><span class="dc-app">Приложение</span><time>Сегодня в 12:00</time></div>
+                  <div class="dc-box" style="--embed:#FF6B35">
+                    <picture>
+                      <source media="(prefers-reduced-motion: reduce)" srcset="../assets/img/banners/sunset-still.webp">
+                      <img class="dc-box__media" src="../assets/img/banners/sunset.webp" alt="Баннер с названием клана UERITY TEAM" width="720" height="240">
+                    </picture>
+                    <div class="dc-box__text"><div class="dc-h2"><img class="dc-emoji" src="../assets/img/emoji/fire-sunset.webp" alt="" width="26" height="26"> Заявка в UERITY TEAM</div></div>
+                    <div class="dc-box__text dc-reqs">
+                      <div><img class="dc-emoji" src="../assets/img/emoji/ring-sunset.webp" alt="" width="22" height="22"> <b>от 16+ лет (без исключений)</b></div>
+                      <div><img class="dc-emoji" src="../assets/img/emoji/ring-sunset.webp" alt="" width="22" height="22"> <b>от 4000 часов (на одном аккаунте)</b></div>
+                      <div><img class="dc-emoji" src="../assets/img/emoji/ring-sunset.webp" alt="" width="22" height="22"> <b>от 8 часов online (ночной онлайн в приоритете)</b></div>
+                    </div>
+                    <hr class="dc-sep">
+                    <div class="dc-box__text">Текущий статус: <img class="dc-emoji" src="../assets/img/emoji/status-green.webp" alt="" width="22" height="22"> Набор открыт</div>
+                    <div class="dc-select"><span class="dc-select__btn" aria-hidden="true">Выберите тип заявки...</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 2. Демо ===== -->
+    <section class="section section--alt" id="demo" aria-labelledby="demo-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Демо</span>
+          <h2 class="h2" id="demo-title">Попробуйте сами</h2>
+          <p class="lead">Вы кандидат, который хочет вступить в клан. Нажимайте подсвеченные кнопки в окне Discord ниже. Настоящий бот для этого не нужен.</p>
+        </div>
+
+        <div class="demo" data-reveal>
+          <div class="demo-guide" aria-live="polite" aria-atomic="true">
+            <div class="demo-guide__top">
+              <span class="badge" id="demo-count">Шаг 1 из 4</span>
+              <ol class="demo-dots" aria-hidden="true"><li></li><li></li><li></li><li></li></ol>
+            </div>
+            <p class="demo-guide__text" id="demo-hint">Откройте меню в сообщении бота и выберите «Подать заявку в клан».</p>
+          </div>
+
+          <div class="dc" id="ticket-demo" role="group" aria-label="Демо Clan Ticket Bot в окне Discord">
+            <div class="dc__bar"><span class="dc__dots"></span><span class="dc__hash">#</span><span class="dc__channel" id="dm-channel">набор</span><span class="dc__topic" id="dm-topic">Заявки в UERITY TEAM</span></div>
+            <button class="dc-replay" type="button" data-dc-action="replay">↺ Сначала</button>
+            <div class="dc__log" role="log" aria-live="polite"></div>
+            <div class="dc__typing" aria-hidden="true"></div>
+            <div class="dc__input" aria-hidden="true">Написать в канал</div>
+
+            <!-- Окно-анкета (шаг 2) -->
+            <div class="dc-modal" id="dm-form" hidden>
+              <div class="dc-modal__card" role="dialog" aria-modal="true" aria-labelledby="dm-form-title">
+                <div class="dc-modal__head"><img src="../assets/img/avatars/ticket.webp" alt="" width="24" height="24"><h3 id="dm-form-title">Анкета на вступление</h3><button class="dc-modal__close" type="button" aria-label="Закрыть" data-dc-action="form-cancel">×</button></div>
+                <div class="dc-modal__body" id="dm-fields"></div>
+                <div class="dc-modal__foot"><button class="dc-link-btn" type="button" data-dc-action="form-cancel">Отмена</button><button class="dc-btn dc-btn--primary" type="button" id="dm-submit" data-dc-action="form-submit" disabled>Отправить</button></div>
+              </div>
+            </div>
+
+            <!-- Окно «Причина отказа» -->
+            <div class="dc-modal" id="dm-deny" hidden>
+              <div class="dc-modal__card" role="dialog" aria-modal="true" aria-labelledby="dm-deny-title">
+                <div class="dc-modal__head"><img src="../assets/img/avatars/ticket.webp" alt="" width="24" height="24"><h3 id="dm-deny-title">Причина отказа</h3><button class="dc-modal__close" type="button" aria-label="Закрыть" data-dc-action="deny-cancel">×</button></div>
+                <div class="dc-modal__body">
+                  <span class="dc-label">Причина (можно оставить пустой)</span>
+                  <div class="dc-input dc-input--area" id="dm-reason"></div>
+                </div>
+                <div class="dc-modal__foot"><button class="dc-link-btn" type="button" data-dc-action="deny-cancel">Отмена</button><button class="dc-btn dc-btn--danger" type="button" id="dm-deny-submit" data-dc-action="deny-submit" disabled>Отправить</button></div>
+              </div>
+            </div>
+          </div>
+          <p class="demo-note">Ники, ответы и числа в демо выдуманные. Так бот выглядит в Discord на сервере клана.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 3. Темы оформления ===== -->
+    <section class="section" id="themes" aria-labelledby="themes-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Оформление</span>
+          <h2 class="h2" id="themes-title">Темы оформления</h2>
+          <p class="lead">Пять тем на выбор. Тема меняет цвет полоски, баннер и значки в сообщении с заявкой. Её ставит администратор командой <code class="inline-cmd">/тикет-тема</code>.</p>
+        </div>
+        <div class="themes">
+          <div class="themes__side" data-reveal>
+            <div class="theme-list" role="group" aria-label="Выбор темы">
+              <button type="button" class="theme-btn" data-theme="sunset" aria-pressed="true"><i style="--sw:#FF6B35"></i>Закат</button>
+              <button type="button" class="theme-btn" data-theme="blood" aria-pressed="false"><i style="--sw:#E3242B"></i>Кровь</button>
+              <button type="button" class="theme-btn" data-theme="ice" aria-pressed="false"><i style="--sw:#4AB3FF"></i>Лёд</button>
+              <button type="button" class="theme-btn" data-theme="toxic" aria-pressed="false"><i style="--sw:#7DF029"></i>Токсик</button>
+              <button type="button" class="theme-btn" data-theme="neon" aria-pressed="false"><i style="--sw:#C640FF"></i>Неон</button>
+            </div>
+            <p class="muted theme-note">Выбрана тема: <strong id="th-name">Закат</strong>. Кружок статуса набора у всех тем одинаковый.</p>
+          </div>
+          <div class="themes__view" data-reveal="scale">
+            <div class="dc" style="--dc-h:auto">
+              <div class="dc__bar"><span class="dc__dots"></span><span class="dc__hash">#</span><span class="dc__channel">набор</span></div>
+              <div class="dc__log">
+                <div class="dc-msg">
+                  <img class="dc-msg__avatar" src="../assets/img/avatars/ticket.webp" alt="" width="40" height="40" loading="lazy">
+                  <div class="dc-msg__body">
+                    <div class="dc-msg__head"><span class="dc-msg__name" style="color:#FF6B35">Clan Ticket Bot</span><span class="dc-app">Приложение</span><time>Сегодня в 12:00</time></div>
+                    <div class="dc-box" id="th-box" style="--embed:#FF6B35">
+                      <picture>
+                        <source id="th-source" media="(prefers-reduced-motion: reduce)" srcset="../assets/img/banners/sunset-still.webp">
+                        <img class="dc-box__media" id="th-banner" src="../assets/img/banners/sunset.webp" alt="Баннер темы «Закат»" width="720" height="240" loading="lazy">
+                      </picture>
+                      <div class="dc-box__text"><div class="dc-h2"><img class="dc-emoji" id="th-fire" src="../assets/img/emoji/fire-sunset.webp" alt="" width="26" height="26" loading="lazy"> Заявка в UERITY TEAM</div></div>
+                      <div class="dc-box__text dc-reqs">
+                        <div><img class="dc-emoji th-ring" src="../assets/img/emoji/ring-sunset.webp" alt="" width="22" height="22" loading="lazy"> <b>от 16+ лет (без исключений)</b></div>
+                        <div><img class="dc-emoji th-ring" src="../assets/img/emoji/ring-sunset.webp" alt="" width="22" height="22" loading="lazy"> <b>от 4000 часов (на одном аккаунте)</b></div>
+                        <div><img class="dc-emoji th-ring" src="../assets/img/emoji/ring-sunset.webp" alt="" width="22" height="22" loading="lazy"> <b>наличие опыта игры в клане</b></div>
+                      </div>
+                      <hr class="dc-sep">
+                      <div class="dc-box__text">Текущий статус: <img class="dc-emoji" src="../assets/img/emoji/status-green.webp" alt="" width="22" height="22" loading="lazy"> Набор открыт</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 4. Что умеет ===== -->
+    <section class="section section--alt" id="features" aria-labelledby="features-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Возможности</span>
+          <h2 class="h2" id="features-title">Что умеет</h2>
+        </div>
+        <div class="features" data-stagger="0.06">
+          <article class="feature" data-reveal>
+            <span class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            <h3>Проверка часов Steam</h3>
+            <p>Бот находит в анкете до трёх ссылок на Steam-профили и пишет в тикете, сколько часов в Rust. Если часов меньше нужного, рядом стоит предупреждение. Скрытый профиль бот тоже отметит.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <span class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg></span>
+            <h3>Чёрный список</h3>
+            <p>Человеку из списка бот отвечает коротко: «Подать заявку на этом сервере нельзя». О причине он не узнаёт. Попытку бот записывает в журнал рекрутеров.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <span class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/><path d="M5 20h14"/></svg></span>
+            <h3>Голоса рекрутеров</h3>
+            <p>Под заявкой есть кнопки «За» и «Против». Нажать ещё раз значит убрать голос. В заявке видно, кто как проголосовал.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <span class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 21h4"/></svg></span>
+            <h3>Напоминания</h3>
+            <p>Если рекрутеры долго не отвечают, бот напоминает им прямо в тикете. По умолчанию через 24 часа. Время можно поменять или выключить напоминания.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <span class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="5" rx="1"/><path d="M5 9v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9M10 13h4"/></svg></span>
+            <h3>Архив переписки</h3>
+            <p>Перед удалением закрытого канала бот сохраняет всю переписку файлом в журнал. Если сохранить не вышло, канал остаётся на месте.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <span class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/></svg></span>
+            <h3>Статистика</h3>
+            <p>За 7 дней, 30 дней или всё время: сколько заявок подано, принято и отклонено, среднее время до решения, причины отказов и работа каждого рекрутера.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <span class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 11-11-3-3L5 16z"/></svg></span>
+            <h3>Свои тексты и своя GIF</h3>
+            <p>Заголовок, требования, подсказки и другие тексты в сообщении с заявкой можно поменять. Баннер можно заменить на свою GIF или картинку.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <span class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg></span>
+            <h3>Три типа обращений</h3>
+            <p>В меню можно подать заявку в клан, предложить сотрудничество или задать вопрос руководству. Последние два работают и при закрытом наборе.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <span class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+            <h3>Справка BattleMetrics</h3>
+            <p>Бот создаёт канал с инструкцией, как найти свой профиль BattleMetrics. Ссылка на этот канал появляется в сообщении с заявкой.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 5. Кейс ===== -->
+    <section class="section" id="case" aria-labelledby="case-title">
+      <div class="container">
+        <div class="case" data-reveal>
+          <div class="case__text">
+            <span class="eyebrow">Кейс</span>
+            <h2 class="h2" id="case-title">Работает у UERITY TEAM</h2>
+            <p class="lead">Бот принимает заявки на сервере клана UERITY TEAM. Лидер клана разрешил показать эту работу.</p>
+            <ul class="checklist">
+              <li>На сервере клана около 760 участников.</li>
+              <li>Оформление: тема «Закат» и баннер с названием клана.</li>
+              <li>Заявка, проверка часов и решение рекрутера собраны в одном канале.</li>
+            </ul>
+          </div>
+          <div class="case__art" aria-hidden="false">
+            <picture>
+              <source media="(prefers-reduced-motion: reduce)" srcset="../assets/img/banners/sunset-still.webp">
+              <img src="../assets/img/banners/sunset.webp" alt="Баннер UERITY TEAM в теме «Закат»" width="720" height="240" loading="lazy">
+            </picture>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 6. Команды ===== -->
+    <section class="section section--alt" id="commands" aria-labelledby="commands-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Команды</span>
+          <h2 class="h2" id="commands-title">Команды бота</h2>
+          <p class="lead">Команды нужны администраторам. Их видят только те, у кого есть право «Управлять сервером». Кандидаты работают с меню в сообщении с заявкой.</p>
+        </div>
+        <div class="commands" data-reveal>
+          <div class="command"><code>/тикет-настройка</code><p>Главная настройка, её делают один раз. Обязательно: роль рекрутеров и категория для каналов-тикетов. По желанию: каналы новостей, BattleMetrics и журнала, роль для принятых, роль руководства, канал чёрного списка и время напоминаний.</p></div>
+          <div class="command"><code>/тикет-панель</code><p>Отправляет в канал сообщение с заявкой: требования, статус набора и меню «Подать заявку».</p></div>
+          <div class="command"><code>/набор</code><p>Открывает или закрывает набор. Статус в сообщении с заявкой меняется сразу.</p></div>
+          <div class="command"><code>/тикет-роль</code><p>Задаёт роль, которую бот выдаёт кандидату после кнопки «Принять».</p></div>
+          <div class="command"><code>/тикет-тема</code><p>Ставит тему оформления: Закат, Кровь, Лёд, Токсик или Неон.</p></div>
+          <div class="command"><code>/тикет-текст</code><p>Меняет любой текст в сообщении с заявкой или заменяет GIF. Можно вернуть стандартный вариант.</p></div>
+          <div class="command"><code>/тикет-battlemetrics</code><p>Создаёт канал с инструкцией, как найти профиль BattleMetrics.</p></div>
+          <div class="command"><code>/тикет-чс</code><p>Чёрный список: добавить человека, убрать или показать список.</p></div>
+          <div class="command"><code>/тикет-стата</code><p>Статистика заявок за 7 дней, 30 дней или всё время.</p></div>
+          <div class="command"><code>/тикет-помощь</code><p>Справка по командам и кнопкам. Ответ видите только вы.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 7. Как получить ===== -->
+    <section class="section" id="get" aria-labelledby="get-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Как получить</span>
+          <h2 class="h2" id="get-title">Бот выдаётся по приглашению</h2>
+          <p class="lead">Публичной кнопки «Добавить» нет. На чужом сервере бот не работает, пока я не открою доступ.</p>
+        </div>
+        <ol class="steps" data-stagger="0.1">
+          <li class="step" data-reveal><span class="step__num">1</span><h3>Вы пишете мне</h3><p>В Discord или Telegram. Расскажите про клан и сервер.</p></li>
+          <li class="step" data-reveal><span class="step__num">2</span><h3>Я настраиваю бота под клан</h3><p>Название, цвета, баннер и требования к кандидатам.</p></li>
+          <li class="step" data-reveal><span class="step__num">3</span><h3>Бот работает круглосуточно</h3><p>Кандидаты подают заявки в любое время, рекрутеры отвечают, когда удобно.</p></li>
+        </ol>
+        <div class="btn-row get-cta" data-reveal><a class="btn btn--accent" href="#contacts">Хочу такого бота</a></div>
+      </div>
+    </section>
+
+    <!-- ===== 8. Другие боты ===== -->
+    <section class="section section--tight section--alt" id="other" aria-labelledby="other-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <h2 class="h2" id="other-title">Другие боты</h2>
+        </div>
+        <div class="other-bots" data-stagger="0.1">
+          <a class="other-bot" href="../analyser/" data-reveal>
+            <img src="../assets/img/avatars/analyser.webp" alt="" width="48" height="48" loading="lazy">
+            <div><strong>Rust server analyser</strong><span>Разбирает сервер Rust и ставит оценку</span></div>
+          </a>
+          <a class="other-bot" href="../radar/" data-reveal>
+            <img src="../assets/img/avatars/radar.webp" alt="" width="48" height="48" loading="lazy">
+            <div><strong>Clan Radar</strong><span>Следит за ростом кланов-соперников</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Контакты (одинаковый блок на всех страницах; заголовок и текст можно менять под страницу) ===== -->
+    <section class="section contact-cta" id="contacts" aria-labelledby="contacts-title">
+      <div class="container">
+        <div class="contact-cta__box" data-reveal>
+          <span class="eyebrow">Контакты</span>
+          <h2 class="h2" id="contacts-title">Хотите такого бота для своего клана?</h2>
+          <p class="lead">Напишите в Discord или Telegram и расскажите про клан. Я настрою бота под вас и подскажу, с чего начать.</p>
+          <div class="contact-list">
+            <a class="contact-chip" href="#contacts" data-contact="discord">
+              <span class="contact-chip__icon contact-chip__icon--discord"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.74 19.74 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></span>
+              <span><small>Discord</small>godz_1la</span>
+            </a>
+            <a class="contact-chip" href="https://t.me/PursuitOfGoals" data-contact="telegram">
+              <span class="contact-chip__icon contact-chip__icon--telegram"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.66 3.72 2.93 10.56c-1.21.49-1.2 1.16-.22 1.46l4.55 1.42 1.74 5.36c.21.58.11.81.72.81.47 0 .68-.21.94-.47l2.27-2.2 4.72 3.49c.87.48 1.5.23 1.71-.81l3.1-14.6c.32-1.27-.48-1.85-1.5-1.3zM8.6 13.2l9.03-5.7c.45-.27.86-.12.52.18l-7.73 6.98-.3 3.2-1.52-4.66z"/></svg></span>
+              <span><small>Telegram</small>@PursuitOfGoals</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+        <div>
+          <a class="brand" href="../">
+            <img src="../assets/logo/mark.svg" alt="" width="28" height="28">
+            <span>Wipe Studio</span>
+          </a>
+          <p class="site-footer__note">Боты, настройка и оформление Discord для кланов Rust.</p>
+        </div>
+        <div>
+          <h2>Боты</h2>
+          <ul>
+            <li><a href="../analyser/">Rust server analyser</a></li>
+            <li><a href="../ticket/">Clan Ticket Bot</a></li>
+            <li><a href="../radar/">Clan Radar</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Связаться</h2>
+          <ul>
+            <li><a href="#contacts" data-contact="discord">Discord: godz_1la</a></li>
+            <li><a href="https://t.me/PursuitOfGoals" data-contact="telegram">Telegram: @PursuitOfGoals</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <span>© <span data-year>2026</span> Wipe Studio</span>
+        <span>Не связано с Discord Inc. и Facepunch Studios.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js" defer></script>
+  <script src="../assets/js/discord.js" defer></script>
+  <script src="../assets/js/ticket.js" defer></script>
+</body>
+</html>

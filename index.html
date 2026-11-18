@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wipe Studio — боты и оформление Discord для кланов Rust</title>
+  <meta name="description" content="Серверы, на которые хочется заходить: боты, настройка и оформление Discord-серверов для кланов Rust.">
+  <meta name="theme-color" content="#f7f6f2">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Wipe Studio">
+  <meta property="og:title" content="Wipe Studio — боты и оформление Discord для кланов Rust">
+  <meta property="og:description" content="Серверы, на которые хочется заходить: боты, настройка и оформление Discord-серверов для кланов Rust.">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:url" content="https://wipe-studio.github.io/">
+  <meta property="og:image" content="https://wipe-studio.github.io/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Wipe Studio — боты и оформление Discord для кланов Rust">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://wipe-studio.github.io/">
+  <link rel="icon" href="assets/logo/mark.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/logo/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/manrope-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/discord.css">
+  <link rel="stylesheet" href="assets/css/home.css">
+  <script>document.documentElement.classList.add("js")</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="./" aria-label="Wipe Studio — на главную">
+        <img src="assets/logo/mark.svg" alt="" width="28" height="28">
+        <span>Wipe Studio</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Открыть меню"><span></span></button>
+      <nav class="nav" id="site-nav" aria-label="Главное меню">
+        <a href="#bots">Боты</a>
+        <a href="#design">Оформление</a>
+        <a href="#services">Услуги</a>
+        <a href="#about">О студии</a>
+        <a href="#contacts">Контакты</a>
+        <a class="btn" href="#contacts">Написать</a>
+      </nav>
+      <a class="btn btn--sm btn--header" href="#contacts">Написать</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ===== Первый экран ===== -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero__grid">
+        <div class="hero__text" data-stagger="0.08">
+          <span class="eyebrow" data-reveal>Каждый вайп — новый старт</span>
+          <h1 class="hero__title" id="hero-title" data-reveal>Серверы, на которые хочется заходить</h1>
+          <p class="lead hero__lead" data-reveal>Боты, настройка и оформление Discord для кланов Rust.</p>
+          <div class="btn-row hero__actions" data-reveal>
+            <a class="btn" href="#contacts" data-contact="discord">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.74 19.74 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+              Написать в Discord
+            </a>
+            <a class="btn btn--ghost" href="#bots">Смотреть работы</a>
+          </div>
+        </div>
+
+        <div class="hero__demo" data-reveal="fade">
+          <div class="hero-switch" role="group" aria-label="Чьё демо показать">
+            <button class="hero-switch__btn theme-analyser" type="button" data-scene="0" aria-pressed="true">
+              <img src="assets/img/avatars/analyser.webp" alt="" width="28" height="28">
+              <span class="hero-switch__name">Rust server analyser</span>
+              <span class="hero-switch__live" aria-hidden="true"></span>
+            </button>
+            <button class="hero-switch__btn theme-ticket" type="button" data-scene="1" aria-pressed="false">
+              <img src="assets/img/avatars/ticket.webp" alt="" width="28" height="28">
+              <span class="hero-switch__name">Clan Ticket Bot</span>
+              <span class="hero-switch__live" aria-hidden="true"></span>
+            </button>
+            <button class="hero-switch__btn theme-radar" type="button" data-scene="2" aria-pressed="false">
+              <img src="assets/img/avatars/radar.webp" alt="" width="28" height="28">
+              <span class="hero-switch__name">Clan Radar</span>
+              <span class="hero-switch__live" aria-hidden="true"></span>
+            </button>
+          </div>
+
+          <div class="dc hero-dc" id="hero-dc" role="region" aria-label="Пример: так боты отвечают в Discord">
+            <div class="dc__bar">
+              <span class="dc__dots"></span><span class="dc__hash">#</span><span class="dc__channel">админка</span><span class="dc__topic">Только для администрации</span>
+            </div>
+            <button class="dc-replay hero-pause" type="button" aria-pressed="false" aria-label="Пауза">
+              <span class="hero-pause__icon" aria-hidden="true"></span><span class="hero-pause__text" aria-hidden="true">Пауза</span>
+            </button>
+            <div class="dc__log" aria-live="off"></div>
+            <div class="dc__typing" aria-hidden="true"></div>
+            <div class="dc__input" aria-hidden="true">Написать в #админка</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Боты ===== -->
+    <section class="section bots" id="bots" aria-labelledby="bots-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Боты</span>
+          <h2 class="h2" id="bots-title">Три бота, которые уже работают</h2>
+          <p class="lead">Анализатор можно добавить сразу. Бот заявок и Clan Radar настраиваю под ваш клан.</p>
+        </div>
+
+        <ul class="bot-cards" role="list" data-stagger="0.1">
+          <li class="bot-card theme-analyser" data-reveal>
+            <div class="bot-card__head">
+              <div class="bot-card__top">
+                <img class="bot-card__avatar" src="assets/img/avatars/analyser.webp" alt="" width="56" height="56" loading="lazy" decoding="async">
+                <span class="badge">Бесплатно</span>
+              </div>
+              <h3 class="bot-card__name">Rust server analyser</h3>
+              <p class="bot-card__lead">Проверяет сервер клана и ставит оценку из 100.</p>
+            </div>
+            <ul class="checklist bot-card__list">
+              <li>Участники, онлайн и новые люди</li>
+              <li>Сильные стороны и слабые места</li>
+              <li>Советы, что сделать в первую очередь</li>
+            </ul>
+            <div class="bot-card__foot">
+              <code class="bot-card__cmd">/анализ</code>
+              <a class="link-arrow bot-card__more" href="analyser/">Подробнее<span class="visually-hidden"> о боте Rust server analyser</span></a>
+            </div>
+          </li>
+
+          <li class="bot-card theme-ticket" data-reveal>
+            <div class="bot-card__head">
+              <div class="bot-card__top">
+                <img class="bot-card__avatar" src="assets/img/avatars/ticket.webp" alt="" width="56" height="56" loading="lazy" decoding="async">
+                <span class="badge">По приглашению</span>
+              </div>
+              <h3 class="bot-card__name">Clan Ticket Bot</h3>
+              <p class="bot-card__lead">Принимает заявки в клан через тикеты.</p>
+            </div>
+            <ul class="checklist bot-card__list">
+              <li>Панель набора с баннером, 5 тем</li>
+              <li>Анкета и свой канал на каждую заявку</li>
+              <li>Проверка часов в Steam и голоса рекрутов</li>
+            </ul>
+            <div class="bot-card__foot">
+              <code class="bot-card__cmd">/набор</code>
+              <a class="link-arrow bot-card__more" href="ticket/">Подробнее<span class="visually-hidden"> о боте Clan Ticket Bot</span></a>
+            </div>
+          </li>
+
+          <li class="bot-card theme-radar" data-reveal>
+            <div class="bot-card__head">
+              <div class="bot-card__top">
+                <img class="bot-card__avatar" src="assets/img/avatars/radar.webp" alt="" width="56" height="56" loading="lazy" decoding="async">
+                <span class="badge">По запросу</span>
+              </div>
+              <h3 class="bot-card__name">Clan Radar</h3>
+              <p class="bot-card__lead">Следит за кланами-соперниками и ростом вашего сервера.</p>
+            </div>
+            <ul class="checklist bot-card__list">
+              <li>Рост за любой период и график</li>
+              <li>Рейтинг по участникам, онлайну и росту</li>
+              <li>Тревоги и отчёт раз в неделю</li>
+            </ul>
+            <div class="bot-card__foot">
+              <code class="bot-card__cmd">/рост</code>
+              <a class="link-arrow bot-card__more" href="radar/">Подробнее<span class="visually-hidden"> о боте Clan Radar</span></a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== Оформление ===== -->
+    <section class="section section--alt design" id="design" aria-labelledby="design-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Оформление</span>
+          <h2 class="h2" id="design-title">Баннеры и значки для клана</h2>
+          <p class="lead">Всё нарисовано под тёмную тему Discord, поэтому и показано в ней. Пример — сервер клана UERITY TEAM.</p>
+        </div>
+
+        <div class="gallery">
+          <figure class="g-card g-card--banner" data-reveal>
+            <div class="g-screen g-screen--banner">
+              <div class="g-panel" id="g-panel" style="--stripe:#FF6B35">
+                <picture>
+                  <source id="g-banner-still" media="(prefers-reduced-motion: reduce)" srcset="assets/img/banners/sunset-still.webp">
+                  <img class="g-banner" id="g-banner" src="assets/img/banners/sunset.webp" width="720" height="240" alt="Анимированный баннер клана UERITY TEAM, тема «Закат»" loading="lazy" decoding="async">
+                </picture>
+                <div class="g-panel__body">
+                  <p class="g-panel__title"><img class="g-inline js-freeze" data-emoji="fire" src="assets/img/emoji/fire-sunset.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Заявка в UERITY TEAM</p>
+                  <p class="g-panel__req"><img class="g-inline js-freeze" data-emoji="ring" src="assets/img/emoji/ring-sunset.webp" width="22" height="22" alt="" loading="lazy" decoding="async"><b><i>от 16+ лет (без исключений)</i></b></p>
+                  <p class="g-panel__req"><img class="g-inline js-freeze" data-emoji="ring" src="assets/img/emoji/ring-sunset.webp" width="22" height="22" alt="" loading="lazy" decoding="async"><b><i>от 4000 часов (на одном аккаунте)</i></b></p>
+                  <hr class="g-panel__sep">
+                  <p class="g-panel__status">Текущий статус: <img class="g-inline js-freeze" src="assets/img/emoji/status-green.webp" width="22" height="22" alt="" loading="lazy" decoding="async">Набор открыт</p>
+                </div>
+              </div>
+            </div>
+            <div class="theme-switch" role="group" aria-label="Тема оформления">
+              <button class="theme-chip" type="button" data-theme="sunset" aria-pressed="true" style="--chip:#FF6B35"><span class="theme-chip__dot" aria-hidden="true"></span>Закат</button>
+              <button class="theme-chip" type="button" data-theme="blood" aria-pressed="false" style="--chip:#E3242B"><span class="theme-chip__dot" aria-hidden="true"></span>Кровь</button>
+              <button class="theme-chip" type="button" data-theme="ice" aria-pressed="false" style="--chip:#4AB3FF"><span class="theme-chip__dot" aria-hidden="true"></span>Лёд</button>
+              <button class="theme-chip" type="button" data-theme="toxic" aria-pressed="false" style="--chip:#7DF029"><span class="theme-chip__dot" aria-hidden="true"></span>Токсик</button>
+              <button class="theme-chip" type="button" data-theme="neon" aria-pressed="false" style="--chip:#C640FF"><span class="theme-chip__dot" aria-hidden="true"></span>Неон</button>
+            </div>
+            <figcaption class="g-card__cap">
+              <strong>Анимированный баннер</strong>
+              <span>Стоит над панелью набора. Тема меняет баннер, значки и цвет полоски слева.</span>
+            </figcaption>
+          </figure>
+
+          <figure class="g-card g-card--emoji" data-reveal>
+            <div class="g-screen g-emoji">
+              <div class="g-emoji__item">
+                <img class="g-emoji__img js-freeze" data-emoji="fire" src="assets/img/emoji/fire-sunset.webp" width="56" height="56" alt="Иероглиф 火 «огонь», тема «Закат»" loading="lazy" decoding="async">
+                <span>火 · огонь</span>
+              </div>
+              <div class="g-emoji__item">
+                <img class="g-emoji__img js-freeze" data-emoji="ring" src="assets/img/emoji/ring-sunset.webp" width="56" height="56" alt="Кольцо-маркер, тема «Закат»" loading="lazy" decoding="async">
+                <span>маркер</span>
+              </div>
+              <div class="g-emoji__item">
+                <img class="g-emoji__img js-freeze" src="assets/img/emoji/status-green.webp" width="56" height="56" alt="Зелёный значок «набор открыт»" loading="lazy" decoding="async">
+                <span>открыто</span>
+              </div>
+              <div class="g-emoji__item">
+                <img class="g-emoji__img js-freeze" src="assets/img/emoji/status-red.webp" width="56" height="56" alt="Красный значок «набор закрыт»" loading="lazy" decoding="async">
+                <span>закрыто</span>
+              </div>
+            </div>
+            <figcaption class="g-card__cap">
+              <strong>Анимированные эмодзи</strong>
+              <span>Значок в заголовке, маркеры для списков и статус набора.</span>
+            </figcaption>
+          </figure>
+
+          <figure class="g-card g-card--avatars" data-reveal>
+            <div class="g-screen g-avatars">
+              <div class="g-avatars__item">
+                <img src="assets/img/avatars/analyser.webp" width="64" height="64" alt="Аватарка бота Rust server analyser" loading="lazy" decoding="async">
+                <span style="color:#E0583F">Rust server analyser</span>
+              </div>
+              <div class="g-avatars__item">
+                <img src="assets/img/avatars/ticket.webp" width="64" height="64" alt="Аватарка бота Clan Ticket Bot" loading="lazy" decoding="async">
+                <span style="color:#FF6B35">Clan Ticket Bot</span>
+              </div>
+              <div class="g-avatars__item">
+                <img src="assets/img/avatars/radar.webp" width="64" height="64" alt="Аватарка бота Clan Radar" loading="lazy" decoding="async">
+                <span style="color:#2EE6C5">Clan Radar</span>
+              </div>
+            </div>
+            <figcaption class="g-card__cap">
+              <strong>Аватарки ботов</strong>
+              <span>У каждого бота свой цвет и свой знак.</span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Услуги ===== -->
+    <section class="section services-sec" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Услуги</span>
+          <h2 class="h2" id="services-title">Что можно заказать</h2>
+          <p class="lead">Выберите, что нужно вашему серверу, и напишите мне. Обсудим задачу.</p>
+        </div>
+
+        <ol class="services" data-stagger="0.08">
+          <li class="service" data-reveal>
+            <span class="service__num" aria-hidden="true">01</span>
+            <div class="service__main">
+              <h3 class="service__title">Разбор и настройка под ключ</h3>
+              <p class="service__text">Разбираю, как устроен ваш сервер, и настраиваю всё, что нужно клану.</p>
+            </div>
+            <ul class="service__tags" aria-label="Что входит">
+              <li>Роли</li><li>Каналы</li><li>Правила</li><li>Приветствие</li><li>Заявки</li><li>Нужные боты</li>
+            </ul>
+            <a class="btn btn--ghost btn--sm service__btn" href="#contacts">Обсудить<span class="visually-hidden">: разбор и настройка под ключ</span></a>
+          </li>
+          <li class="service" data-reveal>
+            <span class="service__num" aria-hidden="true">02</span>
+            <div class="service__main">
+              <h3 class="service__title">Готовые боты под ваш клан</h3>
+              <p class="service__text">Бот заявок и Clan Radar с названием и цветами вашего клана. Работают круглосуточно.</p>
+            </div>
+            <ul class="service__tags" aria-label="Что входит">
+              <li>Бот заявок</li><li>Clan Radar</li>
+            </ul>
+            <a class="btn btn--ghost btn--sm service__btn" href="#contacts">Обсудить<span class="visually-hidden">: готовые боты под ваш клан</span></a>
+          </li>
+          <li class="service" data-reveal>
+            <span class="service__num" aria-hidden="true">03</span>
+            <div class="service__main">
+              <h3 class="service__title">Новые боты под ваши задачи</h3>
+              <p class="service__text">Нужен бот, которого ещё нет? Расскажите задачу, и я сделаю его с нуля.</p>
+            </div>
+            <ul class="service__tags" aria-label="Что входит">
+              <li>По запросу</li><li>С нуля</li>
+            </ul>
+            <a class="btn btn--ghost btn--sm service__btn" href="#contacts">Обсудить<span class="visually-hidden">: новые боты под ваши задачи</span></a>
+          </li>
+          <li class="service" data-reveal>
+            <span class="service__num" aria-hidden="true">04</span>
+            <div class="service__main">
+              <h3 class="service__title">Оформление</h3>
+              <p class="service__text">Баннер, аватарка и значки в одном стиле с вашим кланом.</p>
+            </div>
+            <ul class="service__tags" aria-label="Что входит">
+              <li>Анимированный баннер</li><li>Аватарка</li><li>Эмодзи</li><li>Иконки ролей</li>
+            </ul>
+            <a class="btn btn--ghost btn--sm service__btn" href="#contacts">Обсудить<span class="visually-hidden">: оформление</span></a>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== Отзыв ===== -->
+    <section class="section review" aria-labelledby="review-title">
+      <div class="container">
+        <figure class="review__figure" data-reveal>
+          <h2 class="eyebrow review__label" id="review-title">Отзыв</h2>
+          <blockquote class="review__quote">
+            <p>«Всё понравилось: сделано качественно, быстро и так, как я просил.»</p>
+          </blockquote>
+          <figcaption class="review__cite">
+            <span class="review__mark"><img class="js-freeze" src="assets/img/emoji/fire-sunset.webp" alt="" width="28" height="28" loading="lazy" decoding="async"></span>
+            Лидер клана UERITY TEAM
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===== О студии ===== -->
+    <section class="section section--alt" id="about" aria-labelledby="about-title">
+      <div class="container about">
+        <div class="about__text" data-reveal>
+          <span class="eyebrow">О студии</span>
+          <h2 class="h2" id="about-title">Wipe Studio — это один человек</h2>
+          <p class="lead">Я настраиваю Discord-серверы кланов Rust, делаю ботов и оформление. Боты работают на моём сервере круглосуточно.</p>
+          <p class="about__note">Вайп в Rust — это сброс сервера. Каждый вайп — новый старт.</p>
+        </div>
+        <div class="about__steps" data-reveal>
+          <h3 class="about__steps-title">Как работаем</h3>
+          <ol class="steps">
+            <li class="step">
+              <span class="step__num" aria-hidden="true">1</span>
+              <div><strong class="step__title">Вы пишете</strong><p>В Discord или Telegram. Расскажите про клан и сервер.</p></div>
+            </li>
+            <li class="step">
+              <span class="step__num" aria-hidden="true">2</span>
+              <div><strong class="step__title">Обсуждаем задачу</strong><p>Решаем, что нужно сделать и как это будет выглядеть.</p></div>
+            </li>
+            <li class="step">
+              <span class="step__num" aria-hidden="true">3</span>
+              <div><strong class="step__title">Делаю и показываю</strong><p>Вы смотрите, что получилось.</p></div>
+            </li>
+            <li class="step">
+              <span class="step__num" aria-hidden="true">4</span>
+              <div><strong class="step__title">Запускаю</strong><p>Бот или оформление появляются на вашем сервере.</p></div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Контакты (одинаковый блок на всех страницах; заголовок и текст можно менять под страницу) ===== -->
+    <section class="section contact-cta" id="contacts" aria-labelledby="contacts-title">
+      <div class="container">
+        <div class="contact-cta__box" data-reveal>
+          <span class="eyebrow">Контакты</span>
+          <h2 class="h2" id="contacts-title">Обсудим ваш сервер</h2>
+          <p class="lead">Напишите в Discord или Telegram: расскажите про клан и что хотите получить. Отвечу и подскажу, с чего начать.</p>
+          <div class="contact-list">
+            <a class="contact-chip" href="#contacts" data-contact="discord">
+              <span class="contact-chip__icon contact-chip__icon--discord"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.74 19.74 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></span>
+              <span><small>Discord</small>godz_1la</span>
+            </a>
+            <a class="contact-chip" href="https://t.me/PursuitOfGoals" data-contact="telegram">
+              <span class="contact-chip__icon contact-chip__icon--telegram"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.66 3.72 2.93 10.56c-1.21.49-1.2 1.16-.22 1.46l4.55 1.42 1.74 5.36c.21.58.11.81.72.81.47 0 .68-.21.94-.47l2.27-2.2 4.72 3.49c.87.48 1.5.23 1.71-.81l3.1-14.6c.32-1.27-.48-1.85-1.5-1.3zM8.6 13.2l9.03-5.7c.45-.27.86-.12.52.18l-7.73 6.98-.3 3.2-1.52-4.66z"/></svg></span>
+              <span><small>Telegram</small>@PursuitOfGoals</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+        <div>
+          <a class="brand" href="./">
+            <img src="assets/logo/mark.svg" alt="" width="28" height="28">
+            <span>Wipe Studio</span>
+          </a>
+          <p class="site-footer__note">Боты, настройка и оформление Discord для кланов Rust.</p>
+        </div>
+        <div>
+          <h2>Боты</h2>
+          <ul>
+            <li><a href="analyser/">Rust server analyser</a></li>
+            <li><a href="ticket/">Clan Ticket Bot</a></li>
+            <li><a href="radar/">Clan Radar</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Связаться</h2>
+          <ul>
+            <li><a href="#contacts" data-contact="discord">Discord: godz_1la</a></li>
+            <li><a href="https://t.me/PursuitOfGoals" data-contact="telegram">Telegram: @PursuitOfGoals</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <span>© <span data-year>2026</span> Wipe Studio</span>
+        <span>Не связано с Discord Inc. и Facepunch Studios.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/site.js" defer></script>
+  <script src="assets/js/discord.js" defer></script>
+  <script src="assets/js/home.js" defer></script>
+</body>
+</html>

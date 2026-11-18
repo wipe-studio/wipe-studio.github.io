@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rust server analyser — разбор сервера клана за 10 секунд · Wipe Studio</title>
+  <meta name="description" content="Бесплатный бот для Discord: команда /анализ даёт оценку сервера Rust-клана из 100, статистику, слабые места и советы.">
+  <meta name="theme-color" content="#f7f6f2">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Wipe Studio">
+  <meta property="og:title" content="Rust server analyser — разбор сервера клана за 10 секунд · Wipe Studio">
+  <meta property="og:description" content="Бесплатный бот для Discord: команда /анализ даёт оценку сервера Rust-клана из 100, статистику, слабые места и советы.">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:url" content="https://wipe-studio.github.io/analyser/">
+  <meta property="og:image" content="https://wipe-studio.github.io/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Wipe Studio — боты и оформление Discord для кланов Rust">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://wipe-studio.github.io/analyser/">
+  <link rel="icon" href="../assets/logo/mark.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/logo/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/logo/apple-touch-icon.png">
+  <link rel="preload" href="../assets/fonts/manrope-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/discord.css">
+  <link rel="stylesheet" href="../assets/css/analyser.css">
+  <script>document.documentElement.classList.add("js")</script>
+</head>
+<body class="theme-analyser">
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="../" aria-label="Wipe Studio — на главную">
+        <img src="../assets/logo/mark.svg" alt="" width="28" height="28">
+        <span>Wipe Studio</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Открыть меню"><span></span></button>
+      <nav class="nav" id="site-nav" aria-label="Главное меню">
+        <a href="../#bots" aria-current="page">Боты</a>
+        <a href="../#design">Оформление</a>
+        <a href="../#services">Услуги</a>
+        <a href="../#about">О студии</a>
+        <a href="#contacts">Контакты</a>
+        <a class="btn" href="#contacts">Написать</a>
+      </nav>
+      <a class="btn btn--sm btn--header" href="#contacts">Написать</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ===== Шапка бота ===== -->
+    <section class="bot-hero" aria-labelledby="bot-title">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Хлебные крошки">
+          <a href="../">Главная</a> → <a href="../#bots">Боты</a> → <span aria-current="page">Rust server analyser</span>
+        </nav>
+        <div class="bot-hero__grid">
+          <div data-reveal>
+            <div class="bot-hero__id">
+              <img class="bot-hero__avatar" src="../assets/img/avatars/analyser.webp" alt="Аватарка бота Rust server analyser" width="64" height="64">
+              <span class="badge">Бесплатно</span>
+            </div>
+            <h1 id="bot-title">Rust server analyser</h1>
+            <p class="lead">Разбор сервера клана за 10 секунд. Оценка из 100, слабые места и советы, как набрать людей.</p>
+            <div class="btn-row">
+              <a class="btn btn--accent" href="https://discord.com/oauth2/authorize?client_id=1571625635384918169&amp;scope=bot%20applications.commands&amp;permissions=117792" target="_blank" rel="noopener">Добавить бесплатно</a>
+              <a class="btn btn--ghost" href="#contacts">Написать</a>
+            </div>
+          </div>
+
+          <div data-reveal="fade">
+            <div class="dc an-demo" id="an-demo" role="group" aria-label="Пример: ответ бота на команду /анализ" style="--dc-h: 680px">
+              <button class="dc-replay" type="button" data-dc-action="replay">↺ Сначала</button>
+              <div class="dc__bar"><span class="dc__dots"></span><span class="dc__hash">#</span><span class="dc__channel">общий</span><span class="dc__topic">Пример на выдуманном сервере</span></div>
+              <div class="dc__log" role="log" aria-live="polite"></div>
+              <div class="dc__typing" aria-hidden="true"></div>
+              <div class="dc__input">Написать в #общий</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Что показывает отчёт ===== -->
+    <section class="section section--alt" id="report" aria-labelledby="report-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Отчёт</span>
+          <h2 class="h2" id="report-title">Что показывает отчёт</h2>
+          <p class="lead">Вы пишете одну команду и сразу получаете готовый разбор.</p>
+        </div>
+        <div class="features" data-stagger="0.07">
+          <article class="feature" data-reveal>
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+            <h3>Оценка из 100</h3>
+            <p>Одно число, по которому видно, в каком состоянии сервер. Рядом словесная оценка: от «Плохо» до «Отлично».</p>
+          </article>
+          <article class="feature" data-reveal>
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
+            <h3>Статистика</h3>
+            <p>Участники, онлайн, возраст сервера, новые за 30 дней, кто пишет за неделю, живые каналы, бусты и рост с прошлой проверки.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+            <h3>Сильные стороны</h3>
+            <p>Что на сервере уже сделано хорошо. Это стоит сохранить и показывать новичкам.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l10 18H2L12 3z"/><path d="M12 10v5M12 18v.01"/></svg></div>
+            <h3>Слабые места</h3>
+            <p>Что мешает серверу расти: пустые каналы, нет правил или описания, низкий онлайн и другое.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg></div>
+            <h3>Советы</h3>
+            <p>Короткий список, что сделать в первую очередь. Самое важное стоит в начале.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M7 6H4v1a3 3 0 0 0 3 3M17 6h3v1a3 3 0 0 1-3 3"/></svg></div>
+            <h3>Место среди кланов</h3>
+            <p>Бот показывает, на каком месте ваш сервер среди Rust-кланов по числу участников.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg></div>
+            <h3>Полный отчёт файлом</h3>
+            <p>К ответу приложен файл. Откройте его в браузере: там таблицы с каналами, ролями и ботами.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Как добавить ===== -->
+    <section class="section" id="how" aria-labelledby="how-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Старт</span>
+          <h2 class="h2" id="how-title">Как добавить</h2>
+          <p class="lead">Три шага, около минуты.</p>
+        </div>
+        <ol class="an-steps" data-stagger="0.1">
+          <li class="an-step-card" data-reveal>
+            <span class="an-step-card__num" aria-hidden="true">1</span>
+            <h3>Откройте ссылку</h3>
+            <p>Нажмите «Добавить бесплатно». Откроется страница Discord.</p>
+          </li>
+          <li class="an-step-card" data-reveal>
+            <span class="an-step-card__num" aria-hidden="true">2</span>
+            <h3>Выберите сервер</h3>
+            <p>Нужен сервер, где у вас есть право «Управлять сервером». Подтвердите права бота.</p>
+          </li>
+          <li class="an-step-card" data-reveal>
+            <span class="an-step-card__num" aria-hidden="true">3</span>
+            <h3>Напишите /анализ</h3>
+            <p>Команду можно отправить в любом канале. Отчёт придёт через несколько секунд.</p>
+          </li>
+        </ol>
+        <p class="an-note" data-reveal>Право «Управлять сервером» есть в списке прав бота. Эту галочку для самого бота можно снять.</p>
+        <div class="btn-row an-cta" data-reveal>
+          <a class="btn btn--accent" href="https://discord.com/oauth2/authorize?client_id=1571625635384918169&amp;scope=bot%20applications.commands&amp;permissions=117792" target="_blank" rel="noopener">Добавить бесплатно</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Безопасно ===== -->
+    <section class="section section--alt" id="safe" aria-labelledby="safe-title">
+      <div class="container an-split">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Безопасно</span>
+          <h2 class="h2" id="safe-title">Вы всё контролируете</h2>
+          <p class="lead">Бот работает только по вашей команде.</p>
+        </div>
+        <ul class="checklist an-safe" data-stagger="0.08">
+          <li data-reveal><strong>Отчёт видите только вы.</strong> Ответ на команду скрыт от остальных участников.</li>
+          <li data-reveal><strong>Бот ничего не меняет на сервере.</strong> Он читает данные и присылает отчёт.</li>
+          <li data-reveal><strong>Команда для админов.</strong> Запустить её может тот, у кого есть право «Управлять сервером».</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== Премиум ===== -->
+    <section class="section" id="premium" aria-labelledby="premium-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Премиум</span>
+          <h2 class="h2" id="premium-title">Премиум для тех, кому нужно больше</h2>
+          <p class="lead">Команда /анализ бесплатная. Премиум включается для сервера отдельно и добавляет четыре функции.</p>
+        </div>
+        <div class="features an-premium" data-stagger="0.08">
+          <article class="feature" data-reveal>
+            <h3>Еженедельный отчёт</h3>
+            <p>Бот сам присылает разбор сервера раз в неделю. Получить отчёт сразу можно командой /отчёт.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <h3>Предупреждения</h3>
+            <p>Бот пишет, если за сутки ушло много людей или пришла резкая волна новых. Ещё он сообщает про опасные права у @everyone и про новые роли и боты с правом «Администратор».</p>
+          </article>
+          <article class="feature" data-reveal>
+            <h3>Слежка за конкурентами</h3>
+            <p>Вы добавляете соперника по ссылке-приглашению. Бот сравнивает участников, онлайн и рост.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <h3>Настройка по шаблону лидеров</h3>
+            <p>Бот сравнивает ваш сервер со схемой сильных кланов, показывает, чего не хватает, и может создать недостающее.</p>
+          </article>
+        </div>
+        <div class="btn-row an-cta" data-reveal>
+          <a class="btn btn--accent" href="#contacts">Узнать про Премиум</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Команды ===== -->
+    <section class="section section--alt" id="commands" aria-labelledby="commands-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Команды</span>
+          <h2 class="h2" id="commands-title">Команды бота</h2>
+          <p class="lead">Все команды доступны тем, у кого есть право «Управлять сервером».</p>
+        </div>
+        <div class="commands" data-reveal>
+          <div class="command"><code>/анализ</code><p>Разбор сервера: статистика, плюсы и минусы, советы по продвижению. Бесплатно.</p></div>
+          <div class="command"><code>/премиум</code><p>Статус Премиума на сервере, что он даёт и как его получить.</p></div>
+          <div class="command"><code>/премиум-настройки</code><p>Премиум: куда присылать отчёты и предупреждения, включить или выключить их. Можно получать в личку.</p></div>
+          <div class="command"><code>/отчёт</code><p>Премиум: еженедельный отчёт прямо сейчас.</p></div>
+          <div class="command"><code>/конкуренты</code><p>Премиум: добавить соперника по ссылке-приглашению, убрать его или посмотреть список. В списке вы и соперники: участники, онлайн, рост.</p></div>
+          <div class="command"><code>/шаблон</code><p>Премиум: сравнить сервер со схемой лидеров и создать недостающее.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Другие боты ===== -->
+    <section class="section" id="other" aria-labelledby="other-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <h2 class="h2" id="other-title">Другие боты</h2>
+        </div>
+        <div class="other-bots" data-stagger="0.08">
+          <a class="other-bot" href="../ticket/" data-reveal>
+            <img src="../assets/img/avatars/ticket.webp" alt="" width="48" height="48" loading="lazy" decoding="async">
+            <div><strong>Clan Ticket Bot</strong><span>Заявки в клан и тикеты</span></div>
+          </a>
+          <a class="other-bot" href="../radar/" data-reveal>
+            <img src="../assets/img/avatars/radar.webp" alt="" width="48" height="48" loading="lazy" decoding="async">
+            <div><strong>Clan Radar</strong><span>Слежка за кланами-соперниками</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Контакты (одинаковый блок на всех страницах; заголовок и текст можно менять под страницу) ===== -->
+    <section class="section contact-cta" id="contacts" aria-labelledby="contacts-title">
+      <div class="container">
+        <div class="contact-cta__box" data-reveal>
+          <span class="eyebrow">Контакты</span>
+          <h2 class="h2" id="contacts-title">Вопросы про бота и Премиум</h2>
+          <p class="lead">Напишите в Discord или Telegram. Отвечу, как подключить Премиум и что он даёт вашему серверу.</p>
+          <div class="contact-list">
+            <a class="contact-chip" href="#contacts" data-contact="discord">
+              <span class="contact-chip__icon contact-chip__icon--discord"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.74 19.74 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></span>
+              <span><small>Discord</small>godz_1la</span>
+            </a>
+            <a class="contact-chip" href="https://t.me/PursuitOfGoals" data-contact="telegram">
+              <span class="contact-chip__icon contact-chip__icon--telegram"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.66 3.72 2.93 10.56c-1.21.49-1.2 1.16-.22 1.46l4.55 1.42 1.74 5.36c.21.58.11.81.72.81.47 0 .68-.21.94-.47l2.27-2.2 4.72 3.49c.87.48 1.5.23 1.71-.81l3.1-14.6c.32-1.27-.48-1.85-1.5-1.3zM8.6 13.2l9.03-5.7c.45-.27.86-.12.52.18l-7.73 6.98-.3 3.2-1.52-4.66z"/></svg></span>
+              <span><small>Telegram</small>@PursuitOfGoals</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+        <div>
+          <a class="brand" href="../">
+            <img src="../assets/logo/mark.svg" alt="" width="28" height="28">
+            <span>Wipe Studio</span>
+          </a>
+          <p class="site-footer__note">Боты, настройка и оформление Discord для кланов Rust.</p>
+        </div>
+        <div>
+          <h2>Боты</h2>
+          <ul>
+            <li><a href="../analyser/">Rust server analyser</a></li>
+            <li><a href="../ticket/">Clan Ticket Bot</a></li>
+            <li><a href="../radar/">Clan Radar</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Связаться</h2>
+          <ul>
+            <li><a href="#contacts" data-contact="discord">Discord: godz_1la</a></li>
+            <li><a href="https://t.me/PursuitOfGoals" data-contact="telegram">Telegram: @PursuitOfGoals</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <span>© <span data-year>2026</span> Wipe Studio</span>
+        <span>Не связано с Discord Inc. и Facepunch Studios.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js" defer></script>
+  <script src="../assets/js/discord.js" defer></script>
+  <script src="../assets/js/analyser.js" defer></script>
+</body>
+</html>

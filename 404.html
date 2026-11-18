@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Страница не найдена · Wipe Studio</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#f7f6f2">
+  <link rel="icon" href="/assets/logo/mark.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/logo/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/logo/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/manrope-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <style>
+    .notfound { min-height: calc(100vh - var(--header-h) - 260px); display: grid; align-items: center; }
+    .notfound__inner { display: grid; gap: var(--s-4); justify-items: start; }
+    .notfound__mark { width: 72px; height: 72px; opacity: 0.9; margin-bottom: var(--s-2); }
+  </style>
+  <script>document.documentElement.classList.add("js")</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="/" aria-label="Wipe Studio — на главную">
+        <img src="/assets/logo/mark.svg" alt="" width="28" height="28">
+        <span>Wipe Studio</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Открыть меню"><span></span></button>
+      <nav class="nav" id="site-nav" aria-label="Главное меню">
+        <a href="/#bots">Боты</a>
+        <a href="/#design">Оформление</a>
+        <a href="/#services">Услуги</a>
+        <a href="/#about">О студии</a>
+        <a href="/#contacts">Контакты</a>
+        <a class="btn" href="/#contacts">Написать</a>
+      </nav>
+      <a class="btn btn--sm btn--header" href="/#contacts">Написать</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section notfound" aria-labelledby="nf-title">
+      <div class="container notfound__inner">
+        <img class="notfound__mark" src="/assets/logo/mark.svg" alt="" width="72" height="72">
+        <span class="eyebrow">Ошибка 404</span>
+        <h1 class="h2" id="nf-title">Такой страницы нет</h1>
+        <p class="lead">Возможно, ссылка устарела или в адресе опечатка. Начните с главной или посмотрите ботов.</p>
+        <div class="btn-row">
+          <a class="btn" href="/">На главную</a>
+          <a class="btn btn--ghost" href="/#bots">Боты</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+        <div>
+          <a class="brand" href="/">
+            <img src="/assets/logo/mark.svg" alt="" width="28" height="28">
+            <span>Wipe Studio</span>
+          </a>
+          <p class="site-footer__note">Боты, настройка и оформление Discord для кланов Rust.</p>
+        </div>
+        <div>
+          <h2>Боты</h2>
+          <ul>
+            <li><a href="/analyser/">Rust server analyser</a></li>
+            <li><a href="/ticket/">Clan Ticket Bot</a></li>
+            <li><a href="/radar/">Clan Radar</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Связаться</h2>
+          <ul>
+            <li><a href="/#contacts" data-contact="discord">Discord: godz_1la</a></li>
+            <li><a href="https://t.me/PursuitOfGoals" data-contact="telegram">Telegram: @PursuitOfGoals</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <span>© <span data-year>2026</span> Wipe Studio</span>
+        <span>Не связано с Discord Inc. и Facepunch Studios.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/site.js" defer></script>
+</body>
+</html>

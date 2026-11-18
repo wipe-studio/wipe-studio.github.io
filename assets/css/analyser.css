@@ -1,0 +1,60 @@
+/* Стили страницы analyser/index.html */
+
+/* ---------- Демо в окне Discord ---------- */
+.an-demo { --embed: #e05a4f; max-width: 100%; }
+.an-demo .dc-embed { max-width: 100%; gap: 6px; }
+.an-demo .dc-msg__name { color: #e0583f; }
+.an-demo .dc-embed__desc { display: grid; gap: 2px; font-size: 13.5px; }
+.an-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px 14px; }
+.an-hide { display: none !important; }
+
+/* Оценка и полоска */
+.an-score { font-size: 15px; }
+.an-score b.an-n { font-variant-numeric: tabular-nums; display: inline-block; min-width: 1.4em; text-align: right; }
+.an-bar { height: 8px; border-radius: 99px; background: #2b2d31; overflow: hidden; margin: 6px 0 8px; }
+.an-bar i { display: block; height: 100%; width: 0; border-radius: 99px; background: var(--embed); transition: width 0.08s linear; }
+.an-rank { margin-top: 6px; }
+.an-demo .dc-field__name { margin-top: 4px; }
+.an-demo .dc-embed__fields { gap: 10px; }
+.an-demo ul.dc-list { margin: 0; }
+.an-file {
+  display: inline-flex; align-items: center; gap: 10px; margin-top: 6px; padding: 8px 12px;
+  border-radius: 6px; background: #2b2d31; border: 1px solid #1e1f22; font-size: 14px; color: var(--dc-link);
+}
+.an-file svg { width: 20px; height: 20px; color: var(--dc-muted); flex: none; }
+.an-file small { display: block; color: var(--dc-muted); font-size: 12px; }
+.an-demo .dc-embed__footer { margin-top: 4px; }
+
+/* ---------- Как добавить ---------- */
+.an-steps { list-style: none; display: grid; gap: var(--s-4); grid-template-columns: repeat(3, minmax(0, 1fr)); counter-reset: none; }
+.an-step-card { position: relative; padding: var(--s-5); border-radius: var(--r-lg); background: var(--surface); border: 1px solid var(--line); display: grid; gap: var(--s-2); align-content: start; }
+.an-step-card__num {
+  width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; margin-bottom: var(--s-2);
+  background: var(--accent-soft); color: var(--accent); font-weight: 750; font-size: var(--fs-md);
+}
+.an-step-card h3 { font-size: 1.125rem; letter-spacing: -0.01em; }
+.an-step-card p { color: var(--ink-2); font-size: var(--fs-sm); }
+.an-note { margin-top: var(--s-5); color: var(--ink-2); font-size: var(--fs-sm); max-width: 62ch; }
+.an-cta { margin-top: var(--s-6); }
+
+/* ---------- Безопасно ---------- */
+.an-split { display: grid; gap: clamp(24px, 5vw, 64px); grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); align-items: center; }
+.an-split .section-head { margin-bottom: 0; }
+.an-safe { gap: var(--s-5); }
+.an-safe li { padding: 0 0 0 34px; font-size: var(--fs-md); color: var(--ink-2); }
+.an-safe li strong { display: block; color: var(--ink); font-weight: 700; }
+.an-safe li::before { top: 0.15em; width: 22px; height: 22px; background-size: 14px; }
+
+/* ---------- Премиум ---------- */
+.an-premium { grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); }
+.an-premium .feature { border-top: 3px solid var(--accent-fill); }
+
+@media (max-width: 900px) {
+  .an-steps { grid-template-columns: 1fr; }
+  .an-split { grid-template-columns: 1fr; align-items: start; }
+}
+@media (max-width: 560px) {
+  .an-demo { --dc-h: 520px; }
+  .an-demo .dc-replay { top: 8px; right: 8px; }
+}
+.an-demo .dc-embed__fields.dc-embed__fields--1 { grid-template-columns: minmax(0, 1fr); }

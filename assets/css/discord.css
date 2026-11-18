@@ -1,0 +1,265 @@
+/* =========================================================
+   Окно «как в Discord» для живых демо ботов.
+   Тёмный вид Discord — как бот выглядит в жизни. Окно — это
+   аккуратный «экран» внутри светлого сайта.
+   Разметка — см. комментарии у каждого блока и assets/js/discord.js
+   ========================================================= */
+.dc {
+  --dc-bg: #323339;          /* фон чата */
+  --dc-bar: #2c2d32;         /* шапка канала */
+  --dc-deep: #1e1f22;        /* поля ввода, меню */
+  --dc-card: #393a41;        /* embed / контейнер (под него нарисованы GIF) */
+  --dc-hover: #2e2f35;
+  --dc-line: #3f4147;
+  --dc-text: #dbdee1;
+  --dc-head: #f2f3f5;
+  --dc-muted: #949ba4;
+  --dc-faint: #6d6f78;
+  --dc-link: #00a8fc;
+  --dc-blurple: #5865f2;
+  --dc-green: #248046;
+  --dc-red: #da373c;
+  --dc-grey: #4e5058;
+  --dc-font: "gg sans", "Noto Sans", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+
+  position: relative;
+  display: flex; flex-direction: column;
+  background: var(--dc-bg); color: var(--dc-text);
+  font-family: var(--dc-font); font-size: 15px; line-height: 1.375; font-weight: 400;
+  border-radius: var(--r-lg, 20px); overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(27, 27, 24, 0.08), 0 30px 60px -24px rgba(27, 27, 24, 0.35), 0 12px 24px -12px rgba(27, 27, 24, 0.2);
+  isolation: isolate;
+  text-align: left;
+}
+.dc *, .dc *::before, .dc *::after { box-sizing: border-box; }
+.dc ::selection { background: rgba(88, 101, 242, 0.5); color: #fff; }
+.dc :focus-visible { outline: 2px solid var(--dc-link); outline-offset: 2px; }
+
+/* Шапка окна: <div class="dc__bar"><span class="dc__dots"></span><span class="dc__hash">#</span><span class="dc__channel">ticket</span><span class="dc__topic">…</span></div> */
+.dc__bar {
+  display: flex; align-items: center; gap: 8px; height: 48px; padding: 0 16px; flex: none;
+  background: var(--dc-bg); border-bottom: 1px solid rgba(0, 0, 0, 0.28);
+  font-weight: 600; color: var(--dc-head); font-size: 15px; white-space: nowrap; overflow: hidden;
+}
+.dc__dots { display: inline-flex; gap: 6px; margin-right: 8px; }
+.dc__dots::before, .dc__dots::after, .dc__dots { content: ""; }
+.dc__dots { width: 10px; height: 10px; border-radius: 50%; background: #ed6a5e; box-shadow: 16px 0 0 #f4bf4f, 32px 0 0 #61c554; margin-right: 40px; flex: none; }
+.dc__hash { color: var(--dc-muted); font-size: 22px; font-weight: 400; line-height: 1; }
+.dc__topic { color: var(--dc-muted); font-weight: 400; font-size: 13px; overflow: hidden; text-overflow: ellipsis; padding-left: 10px; margin-left: 2px; border-left: 1px solid var(--dc-line); }
+
+/* Лента сообщений: высоту задаёт страница (--dc-h) */
+.dc__log {
+  flex: 1 1 auto; height: var(--dc-h, 520px); overflow-y: auto; overflow-x: hidden;
+  padding: 16px 0 8px; scroll-behavior: smooth; overscroll-behavior: contain;
+  scrollbar-width: thin; scrollbar-color: #1a1b1e transparent;
+  display: flex; flex-direction: column;
+}
+.dc__log > :first-child { margin-top: auto; }   /* сообщения прижаты к низу, как в Discord */
+.dc__log::-webkit-scrollbar { width: 8px; }
+.dc__log::-webkit-scrollbar-thumb { background: #1a1b1e; border-radius: 8px; }
+
+/* «Бот печатает…» */
+.dc__typing { height: 24px; padding: 0 16px; font-size: 13px; color: var(--dc-text); display: flex; align-items: center; gap: 6px; flex: none; opacity: 0; transition: opacity 0.2s; }
+.dc__typing.is-on { opacity: 1; }
+.dc__typing b { font-weight: 700; }
+.dc__typing i { display: inline-flex; gap: 3px; margin-right: 4px; }
+.dc__typing i span { width: 6px; height: 6px; border-radius: 50%; background: var(--dc-text); opacity: 0.4; animation: dc-dot 1.2s infinite; }
+.dc__typing i span:nth-child(2) { animation-delay: 0.15s; }
+.dc__typing i span:nth-child(3) { animation-delay: 0.3s; }
+@keyframes dc-dot { 0%, 60%, 100% { opacity: 0.35; transform: none; } 30% { opacity: 1; transform: translateY(-2px); } }
+
+/* Поле ввода (декоративное) */
+.dc__input { margin: 0 16px 16px; height: 44px; border-radius: 8px; background: #383a40; color: var(--dc-faint); display: flex; align-items: center; gap: 12px; padding: 0 14px; font-size: 15px; flex: none; }
+.dc__input::before { content: "+"; width: 22px; height: 22px; border-radius: 50%; background: #b5bac1; color: #383a40; display: grid; place-items: center; font-weight: 700; font-size: 18px; line-height: 1; flex: none; }
+
+/* ---------- Сообщение ----------
+<div class="dc-msg">
+  <img class="dc-msg__avatar" src="" alt="">
+  <div class="dc-msg__body">
+    <div class="dc-reply"><img src=""><b>Игрок</b> использует <span class="dc-cmd">/анализ</span></div>   (необязательно)
+    <div class="dc-msg__head"><span class="dc-msg__name" style="color:#…">Clan Radar</span><span class="dc-app">ПРИЛОЖЕНИЕ</span><time>Сегодня в 12:00</time></div>
+    <div class="dc-msg__text">Текст</div>
+    … embed / container / кнопки …
+  </div>
+</div> */
+.dc-msg { position: relative; display: grid; grid-template-columns: 40px minmax(0, 1fr); column-gap: 16px; padding: 4px 16px 4px 16px; margin-top: 16px; }
+.dc-msg:hover { background: var(--dc-hover); }
+.dc-msg--cont { margin-top: 0; padding-top: 1px; }      /* продолжение от того же автора — без аватарки */
+.dc-msg--cont .dc-msg__avatar { visibility: hidden; height: 0; }
+.dc-msg__avatar { width: 40px; height: 40px; border-radius: 50%; grid-row: 1 / span 3; margin-top: 2px; object-fit: cover; background: var(--dc-grey); }
+.dc-msg--has-reply .dc-msg__avatar { margin-top: 24px; }
+.dc-msg__body { min-width: 0; }
+.dc-msg__head { display: flex; align-items: baseline; flex-wrap: wrap; column-gap: 6px; }
+.dc-msg__name { font-weight: 600; color: var(--dc-head); font-size: 15px; }
+.dc-msg__head time { color: var(--dc-muted); font-size: 12px; margin-left: 2px; }
+.dc-app { display: inline-flex; align-items: center; height: 15px; padding: 0 4px; border-radius: 3px; background: var(--dc-blurple); color: #fff; font-size: 10px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; position: relative; top: -1px; }
+.dc-msg__text { color: var(--dc-text); word-wrap: break-word; }
+.dc-msg__text + * { margin-top: 4px; }
+.dc-msg__text p + p { margin-top: 4px; }
+
+/* Строка «использует /команда» над ответом бота */
+.dc-reply { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--dc-muted); margin: 0 0 2px; white-space: nowrap; overflow: hidden; position: relative; }
+.dc-reply::before { content: ""; position: absolute; left: -36px; top: 50%; width: 30px; height: 10px; border: 2px solid #4e5058; border-right: 0; border-bottom: 0; border-top-left-radius: 6px; }
+.dc-reply img { width: 16px; height: 16px; border-radius: 50%; }
+.dc-reply b { color: var(--dc-text); font-weight: 500; }
+.dc-cmd { color: var(--dc-link); font-weight: 500; }
+
+/* Пометка «Только вы видите это сообщение» */
+.dc-ephemeral { display: flex; align-items: center; gap: 6px; margin-top: 6px; font-size: 12px; color: var(--dc-muted); }
+.dc-ephemeral::before { content: ""; width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid currentColor; background: radial-gradient(circle at 50% 50%, currentColor 0 2px, transparent 2.5px); }
+.dc-ephemeral a { color: var(--dc-link); text-decoration: none; }
+
+/* Мелочи внутри текста */
+.dc b, .dc strong { font-weight: 700; color: var(--dc-head); }
+.dc .dc-muted { color: var(--dc-muted); }
+.dc .dc-small { font-size: 13px; color: var(--dc-muted); }   /* как «-# текст» в Discord */
+.dc code { font-family: Consolas, "Andale Mono", monospace; font-size: 0.85em; background: #2b2d31; border-radius: 4px; padding: 0.1em 0.3em; color: var(--dc-text); }
+.dc pre { margin: 6px 0 0; padding: 8px 10px; background: #2b2d31; border: 1px solid #1e1f22; border-radius: 4px; font-family: Consolas, monospace; font-size: 13px; white-space: pre-wrap; }
+.dc a { color: var(--dc-link); text-decoration: none; }
+.dc-mention { background: rgba(88, 101, 242, 0.3); color: #c9cdfb; border-radius: 3px; padding: 0 2px; font-weight: 500; }
+.dc-h1 { font-size: 22px; font-weight: 700; line-height: 1.3; color: var(--dc-head); margin: 4px 0 2px; }
+.dc-h2 { font-size: 19px; font-weight: 700; line-height: 1.3; color: var(--dc-head); margin: 4px 0 2px; }
+.dc-h3 { font-size: 16px; font-weight: 700; line-height: 1.3; color: var(--dc-head); margin: 4px 0 2px; }
+.dc ul.dc-list { list-style: disc; padding-left: 20px; margin: 2px 0; }
+.dc ul.dc-list li { margin: 1px 0; }
+.dc-emoji { display: inline-block; width: 1.375em; height: 1.375em; vertical-align: -0.3em; object-fit: contain; margin: 0 1px; }
+.dc-emoji--lg { width: 48px; height: 48px; vertical-align: middle; }
+.dc-quote { border-left: 4px solid #4e5058; padding-left: 12px; margin: 2px 0; }
+
+/* ---------- Embed (карточка) ----------
+<div class="dc-embed" style="--embed:#2EE6C5">
+  <div class="dc-embed__author"><img src="">Автор</div>
+  <div class="dc-embed__title">Заголовок</div>
+  <div class="dc-embed__desc">Текст</div>
+  <div class="dc-embed__fields"><div class="dc-field"><div class="dc-field__name">Имя</div><div class="dc-field__value">Значение</div></div>…</div>
+  <img class="dc-embed__image" src="">
+  <img class="dc-embed__thumb" src="">     (картинка справа вверху)
+  <div class="dc-embed__footer"><img src="">Подпись</div>
+</div> */
+.dc-embed {
+  position: relative; display: grid; gap: 8px; max-width: 520px; margin-top: 6px;
+  padding: 10px 16px 14px 12px; border-radius: 4px; background: var(--dc-card);
+  border-left: 4px solid var(--embed, #1e1f22);
+}
+.dc-embed--thumb { padding-right: 96px; }
+.dc-embed__author { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--dc-head); }
+.dc-embed__author img { width: 24px; height: 24px; border-radius: 50%; }
+.dc-embed__title { font-size: 16px; font-weight: 700; color: var(--dc-head); line-height: 1.3; }
+.dc-embed__desc { font-size: 14px; line-height: 1.45; white-space: normal; }
+.dc-embed__fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 12px; }
+.dc-embed__fields--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.dc-embed__fields--1 { grid-template-columns: 1fr; }
+.dc-field__name { font-size: 14px; font-weight: 600; color: var(--dc-head); margin-bottom: 2px; }
+.dc-field__value { font-size: 14px; line-height: 1.4; }
+.dc-field--wide { grid-column: 1 / -1; }
+.dc-embed__image { width: 100%; border-radius: 4px; margin-top: 4px; }
+.dc-embed__thumb { position: absolute; top: 12px; right: 14px; width: 72px; height: 72px; border-radius: 4px; object-fit: cover; }
+.dc-embed__footer { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--dc-muted); margin-top: 2px; }
+.dc-embed__footer img { width: 20px; height: 20px; border-radius: 50%; }
+
+/* ---------- Контейнер Components V2 (так выглядит панель тикет-бота) ----------
+<div class="dc-box" style="--embed:#FF6B35">
+  <img class="dc-box__media" src="banner.webp" alt="">
+  <div class="dc-box__text">…</div>
+  <hr class="dc-sep">
+  <div class="dc-row">кнопки / меню</div>
+</div> */
+.dc-box { display: grid; gap: 10px; max-width: 520px; margin-top: 6px; padding: 14px 16px; border-radius: 8px; background: var(--dc-card); border: 1px solid rgba(255, 255, 255, 0.04); border-left: 4px solid var(--embed, transparent); }
+.dc-box__media { width: 100%; border-radius: 6px; display: block; }
+.dc-box__text { font-size: 15px; line-height: 1.45; }
+.dc-sep { border: 0; height: 1px; background: rgba(255, 255, 255, 0.08); margin: 4px 0; }
+.dc-sep--lg { margin: 10px 0; }
+
+/* ---------- Кнопки и меню ---------- */
+.dc-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.dc-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  height: 32px; min-width: 60px; padding: 2px 16px; border: 0; border-radius: 8px;
+  font-family: var(--dc-font); font-size: 14px; font-weight: 500; line-height: 1; color: #fff; background: var(--dc-grey);
+  transition: background-color 0.15s, filter 0.15s, transform 0.1s; white-space: nowrap;
+}
+.dc-btn:hover:not(:disabled) { filter: brightness(1.12); }
+.dc-btn:active:not(:disabled) { transform: translateY(1px); }
+.dc-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.dc-btn--primary { background: var(--dc-blurple); }
+.dc-btn--success { background: var(--dc-green); }
+.dc-btn--danger { background: var(--dc-red); }
+.dc-btn--link::after { content: "↗"; font-size: 12px; opacity: 0.8; }
+.dc-btn img { width: 18px; height: 18px; }
+/* Подсказка «нажмите сюда» для интерактивных демо */
+.dc-btn.is-hint, .dc-select.is-hint { box-shadow: 0 0 0 2px var(--dc-bg), 0 0 0 4px rgba(255, 255, 255, 0.55); animation: dc-hint 1.6s ease-in-out infinite; }
+@keyframes dc-hint { 50% { box-shadow: 0 0 0 2px var(--dc-bg), 0 0 0 5px rgba(255, 255, 255, 0.25); } }
+
+/* Выпадающее меню (select) */
+.dc-select { position: relative; width: 100%; max-width: 440px; }
+.dc-select__btn {
+  width: 100%; height: 42px; display: flex; align-items: center; gap: 10px; padding: 0 12px 0 14px;
+  border: 1px solid var(--dc-deep); border-radius: 8px; background: var(--dc-deep); color: var(--dc-muted); font-size: 15px; text-align: left;
+}
+.dc-select__btn::after { content: ""; margin-left: auto; width: 8px; height: 8px; border-right: 2px solid var(--dc-text); border-bottom: 2px solid var(--dc-text); transform: rotate(45deg) translate(-2px, -2px); transition: transform 0.2s; }
+.dc-select.is-open .dc-select__btn::after { transform: rotate(-135deg) translate(-2px, -2px); }
+.dc-select__menu { position: absolute; left: 0; right: 0; top: calc(100% + 4px); z-index: 5; background: #2b2d31; border: 1px solid var(--dc-deep); border-radius: 8px; padding: 4px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); display: none; max-height: 260px; overflow-y: auto; }
+.dc-select.is-open .dc-select__menu { display: block; }
+.dc-select.is-up .dc-select__menu { top: auto; bottom: calc(100% + 4px); }
+.dc-option { width: 100%; display: flex; align-items: center; gap: 10px; padding: 8px 10px; border: 0; border-radius: 4px; background: transparent; color: var(--dc-text); text-align: left; font-size: 15px; }
+.dc-option:hover, .dc-option:focus-visible { background: #35373c; }
+.dc-option img { width: 22px; height: 22px; flex: none; }
+.dc-option small { display: block; color: var(--dc-muted); font-size: 13px; }
+
+/* ---------- Вложение-картинка ---------- */
+.dc-attach { margin-top: 6px; max-width: 520px; border-radius: 8px; overflow: hidden; background: #2b2d31; }
+.dc-attach img { width: 100%; }
+
+/* ---------- Окно-форма (modal) ----------
+<div class="dc-modal" hidden>
+  <div class="dc-modal__card" role="dialog" aria-modal="true" aria-labelledby="…">
+    <div class="dc-modal__head"><img src=""><h3 id="…">Заявка в клан</h3><button class="dc-modal__close" aria-label="Закрыть">×</button></div>
+    <div class="dc-modal__body">
+      <label class="dc-label">Возраст<span>*</span></label><div class="dc-input">16</div> …
+    </div>
+    <div class="dc-modal__foot"><button class="dc-link-btn">Отмена</button><button class="dc-btn dc-btn--primary">Отправить</button></div>
+  </div>
+</div> */
+.dc-modal { position: absolute; inset: 0; z-index: 20; display: grid; place-items: center; padding: 16px; background: rgba(0, 0, 0, 0.7); animation: dc-fade 0.2s ease; }
+.dc-modal[hidden] { display: none; }
+.dc-modal__card { width: min(100%, 440px); max-height: calc(100% - 8px); overflow: auto; background: var(--dc-bg); border-radius: 8px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); animation: dc-pop 0.25s cubic-bezier(0.22, 1, 0.36, 1); }
+.dc-modal__head { display: flex; align-items: center; gap: 10px; padding: 16px 16px 8px; }
+.dc-modal__head img { width: 24px; height: 24px; border-radius: 50%; }
+.dc-modal__head h3 { font-size: 18px; font-weight: 700; color: var(--dc-head); margin: 0; letter-spacing: 0; }
+.dc-modal__close { margin-left: auto; width: 28px; height: 28px; border: 0; border-radius: 4px; background: transparent; color: var(--dc-muted); font-size: 22px; line-height: 1; }
+.dc-modal__close:hover { color: var(--dc-head); }
+.dc-modal__body { padding: 8px 16px 16px; display: grid; gap: 6px; }
+.dc-label { display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; color: #b5bac1; margin-top: 10px; }
+.dc-label span { color: var(--dc-red); margin-left: 3px; }
+.dc-input { min-height: 40px; padding: 10px; border-radius: 4px; background: var(--dc-deep); color: var(--dc-text); font-size: 15px; line-height: 1.35; white-space: pre-wrap; }
+.dc-input--area { min-height: 72px; }
+.dc-input.is-typing::after { content: ""; display: inline-block; width: 1px; height: 1.1em; background: var(--dc-text); vertical-align: -0.2em; margin-left: 1px; animation: dc-caret 1s steps(1) infinite; }
+@keyframes dc-caret { 50% { opacity: 0; } }
+.dc-modal__foot { display: flex; justify-content: flex-end; align-items: center; gap: 12px; padding: 16px; background: #2b2d31; }
+.dc-link-btn { border: 0; background: transparent; color: var(--dc-text); font-size: 14px; padding: 6px 4px; }
+.dc-link-btn:hover { text-decoration: underline; }
+
+/* Появление нового сообщения */
+.dc-in { animation: dc-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes dc-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes dc-fade { from { opacity: 0; } }
+@keyframes dc-pop { from { opacity: 0; transform: scale(0.96); } }
+
+/* Кнопка «Сначала» поверх окна (сбросить демо) */
+.dc-replay { position: absolute; top: 8px; right: 10px; z-index: 3; height: 32px; padding: 0 12px; border: 0; border-radius: 999px; background: rgba(255, 255, 255, 0.08); color: var(--dc-text); font: 500 13px/1 var(--dc-font); display: inline-flex; align-items: center; gap: 6px; }
+.dc-replay:hover { background: rgba(255, 255, 255, 0.14); }
+
+/* Телефон: окно компактнее */
+@media (max-width: 560px) {
+  .dc { font-size: 14px; border-radius: 16px; }
+  .dc-msg { grid-template-columns: 36px minmax(0, 1fr); column-gap: 12px; padding: 4px 12px; }
+  .dc-msg__avatar { width: 36px; height: 36px; }
+  .dc-reply::before { left: -30px; width: 24px; }
+  .dc__bar { padding: 0 12px; }
+  .dc__dots { display: none; }
+  .dc__topic { display: none; }
+  .dc__input { margin: 0 12px 12px; }
+  .dc-embed__fields:not(.dc-embed__fields--1) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dc-embed--thumb { padding-right: 16px; }
+  .dc-embed__thumb { position: static; width: 56px; height: 56px; order: -1; }
+}

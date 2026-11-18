@@ -1,0 +1,114 @@
+/* Стили страницы ticket/index.html (Clan Ticket Bot). Акцент — оранжевый из base.css */
+
+/* ---------- Общее для окон Discord на странице ---------- */
+.dc-reqs { display: grid; gap: 4px; }
+.dc-reqs b { font-style: italic; font-variant-caps: all-small-caps; letter-spacing: 0.02em; font-weight: 800; }
+.dc-box__text .dc-h2 { margin: 0; display: flex; align-items: center; gap: 6px; }
+.dc-box__text .dc-h2 .dc-emoji { margin: 0; }
+.inline-cmd {
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: 0.9em; font-weight: 600;
+  color: var(--accent); background: var(--accent-soft); padding: 2px 8px; border-radius: 6px; white-space: nowrap;
+}
+.dc .dc-select { max-width: none; }
+.dc-box__text p + p { margin-top: 6px; }
+
+/* ---------- 1. Шапка ---------- */
+.hero-preview { min-width: 0; }
+.hero-preview .dc__log { padding-bottom: 20px; }
+.hero-preview .dc-select__btn { cursor: default; }
+.bot-hero__id .badge { font-size: var(--fs-xs); }
+.bot-hero .lead { max-width: 44ch; }
+
+/* ---------- 2. Демо ---------- */
+.demo { max-width: 780px; margin-inline: auto; }
+.demo-guide {
+  display: grid; gap: var(--s-3); margin-bottom: var(--s-4); padding: 16px 20px;
+  background: var(--bg); border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: var(--shadow-1);
+}
+.demo-guide { position: sticky; top: calc(var(--header-h) + 8px); z-index: 6; box-shadow: var(--shadow-2); }
+.demo-guide__top { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); }
+.demo-dots { list-style: none; display: flex; gap: 6px; }
+.demo-dots li { width: 28px; height: 6px; border-radius: 6px; background: var(--surface-3); transition: background-color 0.3s; }
+.demo-dots li.is-done { background: var(--accent-fill); opacity: 0.45; }
+.demo-dots li.is-now { background: var(--accent-fill); }
+.demo-guide__text { font-size: var(--fs-md); font-weight: 600; line-height: 1.45; min-height: 3em; }
+.demo-note { margin-top: var(--s-4); color: var(--ink-2); font-size: var(--fs-xs); text-align: center; }
+
+#ticket-demo { --dc-h: 600px; }
+#ticket-demo .dc__channel { overflow: hidden; text-overflow: ellipsis; }
+#ticket-demo .dc-replay { top: 8px; }
+#ticket-demo .dc-box { max-width: 560px; }
+#ticket-demo .dc-box__text + .dc-box__text { margin-top: -2px; }
+#ticket-demo .dc-select { max-width: none; }
+#ticket-demo .dc-select__btn { cursor: pointer; }
+#ticket-demo .dc-select__btn.is-chosen { color: var(--dc-text); }
+#ticket-demo .dc-option.is-pick { background: #35373c; box-shadow: inset 3px 0 0 #FF6B35; }
+#ticket-demo .dc-option b { font-weight: 600; color: var(--dc-head); }
+#ticket-demo .dc-option small { margin-top: 1px; }
+#ticket-demo .dc-quote { margin: 2px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+#ticket-demo .dc-box__text > b.q { display: block; margin-top: 2px; }
+#ticket-demo .dc-row { margin-top: 2px; }
+#ticket-demo .dc-btn { height: auto; min-height: 32px; padding: 6px 14px; white-space: normal; text-align: center; }
+#ticket-demo .dc-btn:disabled { opacity: 0.45; }
+#ticket-demo .dc-votes { font-size: 13px; color: var(--dc-muted); }
+#ticket-demo .dc-mention { white-space: nowrap; }
+#ticket-demo .dc-msg__text + .dc-box { margin-top: 6px; }
+#ticket-demo .dc-modal__foot { position: sticky; bottom: 0; }
+#ticket-demo .dc-modal__body .dc-input { min-height: 38px; }
+#ticket-demo .dc-btn.is-hint { animation: dc-hint 1.6s ease-in-out infinite; }
+#ticket-demo .dc__input { color: var(--dc-faint); }
+.dc-small-line { font-size: 12px; color: var(--dc-muted); margin-bottom: 2px; }
+.dc-dm-label { font-size: 12px; font-weight: 600; color: var(--dc-muted); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 2px; }
+
+/* ---------- 3. Темы ---------- */
+.themes { display: grid; gap: clamp(24px, 4vw, 56px); grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); align-items: center; }
+.theme-list { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+.theme-btn {
+  display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 18px 0 14px;
+  border-radius: var(--r-pill); border: 1px solid var(--line-2); background: var(--surface);
+  font-size: var(--fs-sm); font-weight: 650; color: var(--ink);
+  transition: background-color 0.2s, border-color 0.2s, transform 0.2s var(--ease);
+}
+.theme-btn i { width: 14px; height: 14px; border-radius: 50%; background: var(--sw); box-shadow: 0 0 0 1px rgba(27, 27, 24, 0.15); flex: none; }
+.theme-btn:hover { border-color: var(--ink-3); transform: translateY(-1px); }
+.theme-btn[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+.theme-btn[aria-pressed="true"] i { box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5); }
+.theme-note { margin-top: var(--s-4); font-size: var(--fs-sm); }
+.themes__view { min-width: 0; }
+#th-box { max-width: none; }
+#th-banner, #th-fire, .th-ring { transition: opacity 0.25s; }
+.is-swapping { opacity: 0; }
+@media (max-width: 860px) { .themes { grid-template-columns: 1fr; } }
+
+/* ---------- 5. Кейс ---------- */
+.case {
+  display: grid; gap: clamp(24px, 4vw, 56px); grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center;
+  padding: clamp(24px, 4vw, 48px); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-xl); box-shadow: var(--shadow-2);
+}
+.case__text { display: grid; gap: var(--s-4); justify-items: start; }
+.case__art { background: #393a41; border-radius: var(--r-lg); padding: clamp(12px, 2vw, 20px); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05); }
+.case__art img { width: 100%; border-radius: 10px; }
+@media (max-width: 860px) { .case { grid-template-columns: 1fr; } }
+
+/* ---------- 7. Как получить ---------- */
+.steps { list-style: none; display: grid; gap: var(--s-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
+.step { padding: var(--s-5); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); display: grid; gap: var(--s-2); align-content: start; }
+.step__num { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); font-weight: 750; margin-bottom: var(--s-2); }
+.step h3 { font-size: 1.0625rem; letter-spacing: -0.01em; }
+.step p { color: var(--ink-2); font-size: var(--fs-sm); }
+.get-cta { margin-top: var(--s-6); }
+
+/* ---------- Телефон ---------- */
+@media (max-width: 560px) {
+  #ticket-demo { --dc-h: 520px; }
+  .demo-guide { padding: 14px 16px; }
+  .demo-guide__text { font-size: var(--fs-sm); }
+  .dc-replay { padding: 0 10px; }
+  .dc-modal { padding: 8px; }
+  .dc-modal__body { padding: 4px 12px 12px; }
+  .dc-modal__head { padding: 12px 12px 4px; }
+  .dc-label { margin-top: 6px; }
+  .dc-input { font-size: 14px; padding: 8px; }
+  .dc-box { padding: 12px; }
+  .theme-btn { padding: 0 14px 0 12px; }
+}

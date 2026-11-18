@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clan Radar — следит за кланами-соперниками · Wipe Studio</title>
+  <meta name="description" content="Бот для Discord: рост кланов-соперников, рейтинг, график, недельный отчёт и тревоги, когда вас обгоняют.">
+  <meta name="theme-color" content="#f7f6f2">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Wipe Studio">
+  <meta property="og:title" content="Clan Radar — следит за кланами-соперниками · Wipe Studio">
+  <meta property="og:description" content="Бот для Discord: рост кланов-соперников, рейтинг, график, недельный отчёт и тревоги, когда вас обгоняют.">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:url" content="https://wipe-studio.github.io/radar/">
+  <meta property="og:image" content="https://wipe-studio.github.io/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Wipe Studio — боты и оформление Discord для кланов Rust">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://wipe-studio.github.io/radar/">
+  <link rel="icon" href="../assets/logo/mark.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/logo/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/logo/apple-touch-icon.png">
+  <link rel="preload" href="../assets/fonts/manrope-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/discord.css">
+  <link rel="stylesheet" href="../assets/css/radar.css">
+  <script>document.documentElement.classList.add("js")</script>
+</head>
+<body class="theme-radar">
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="../" aria-label="Wipe Studio — на главную">
+        <img src="../assets/logo/mark.svg" alt="" width="28" height="28">
+        <span>Wipe Studio</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Открыть меню"><span></span></button>
+      <nav class="nav" id="site-nav" aria-label="Главное меню">
+        <a href="../#bots" aria-current="page">Боты</a>
+        <a href="../#design">Оформление</a>
+        <a href="../#services">Услуги</a>
+        <a href="../#about">О студии</a>
+        <a href="#contacts">Контакты</a>
+        <a class="btn" href="#contacts">Написать</a>
+      </nav>
+      <a class="btn btn--sm btn--header" href="#contacts">Написать</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ===== 1. Шапка бота ===== -->
+    <section class="bot-hero" aria-labelledby="hero-title">
+      <div class="container bot-hero__grid">
+        <div data-reveal>
+          <nav class="breadcrumbs" aria-label="Хлебные крошки">
+            <a href="../">Главная</a> <span aria-hidden="true">→</span> <a href="../#bots">Боты</a> <span aria-hidden="true">→</span> <span aria-current="page">Clan Radar</span>
+          </nav>
+          <div class="bot-hero__id">
+            <img class="bot-hero__avatar" src="../assets/img/avatars/radar.webp" alt="Аватарка Clan Radar" width="64" height="64">
+            <span class="badge">По запросу</span>
+          </div>
+          <h1 id="hero-title">Clan Radar</h1>
+          <p class="lead">Следит за кланами-соперниками: кто растёт, кто падает и когда вас обгоняют.</p>
+          <div class="btn-row">
+            <a class="btn btn--accent" href="#contacts">Хочу такого бота</a>
+            <a class="btn btn--ghost" href="#demo">Смотреть демо</a>
+          </div>
+        </div>
+        <div class="rd-scope" data-reveal="scale" aria-hidden="true">
+          <svg viewBox="0 0 400 400" focusable="false">
+            <defs>
+              <linearGradient id="rd-sweep-grad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="var(--radar-fill)" stop-opacity="0"/>
+                <stop offset="1" stop-color="var(--radar-fill)" stop-opacity="0.38"/>
+              </linearGradient>
+            </defs>
+            <g fill="none" stroke="var(--line-2)" stroke-width="1.5">
+              <circle cx="200" cy="200" r="60"/>
+              <circle cx="200" cy="200" r="120"/>
+              <circle cx="200" cy="200" r="180"/>
+              <path d="M200 20V380M20 200H380" stroke-dasharray="3 6"/>
+            </g>
+            <g class="rd-sweep">
+              <path d="M200 200L200 20A180 180 0 0 1 327 73Z" fill="url(#rd-sweep-grad)" transform="rotate(-48 200 200)"/>
+              <path d="M200 200L327 73" stroke="var(--radar-fill)" stroke-width="2" transform="rotate(-48 200 200)" stroke-linecap="round"/>
+            </g>
+            <circle cx="200" cy="200" r="9" fill="var(--radar)"/>
+            <circle cx="200" cy="200" r="16" fill="none" stroke="var(--radar)" stroke-width="2" opacity="0.4"/>
+            <g fill="var(--radar-fill)">
+              <circle class="rd-blip" cx="288" cy="128" r="7"/>
+              <circle class="rd-blip" cx="110" cy="150" r="6" style="--d:1.2s"/>
+              <circle class="rd-blip" cx="262" cy="292" r="6" style="--d:2.4s"/>
+              <circle class="rd-blip" cx="136" cy="268" r="5" style="--d:3.4s"/>
+              <circle class="rd-blip" cx="322" cy="214" r="5" style="--d:4.4s"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 2. Живое демо ===== -->
+    <section class="section section--alt" id="demo" aria-labelledby="demo-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Демо</span>
+          <h2 class="h2" id="demo-title">Так отвечает бот</h2>
+          <p class="lead">Выберите сцену. Названия кланов и все числа здесь выдуманные.</p>
+        </div>
+
+        <div class="rd-demo" data-reveal>
+          <div class="rd-tabs" role="group" aria-label="Сцены демо">
+            <button class="rd-tab" type="button" data-scene="0" aria-pressed="true">/рост</button>
+            <button class="rd-tab" type="button" data-scene="1" aria-pressed="false">/рейтинг</button>
+            <button class="rd-tab" type="button" data-scene="2" aria-pressed="false">Недельный отчёт</button>
+            <button class="rd-tab" type="button" data-scene="3" aria-pressed="false">Тревога</button>
+          </div>
+
+          <div class="dc" id="radar-demo">
+            <div class="dc__bar">
+              <span class="dc__dots" aria-hidden="true"></span>
+              <span class="dc__hash" aria-hidden="true">#</span>
+              <span class="dc__channel">радар</span>
+              <span class="dc__topic">Следим за соперниками</span>
+            </div>
+            <button class="dc-replay" type="button" data-dc-action="replay">↺ Сначала</button>
+            <div class="dc__log" role="log" aria-live="polite" aria-label="Переписка с ботом Clan Radar"></div>
+            <div class="dc__typing" aria-hidden="true"></div>
+            <div class="dc__input" aria-hidden="true">Написать в #радар</div>
+          </div>
+          <p class="rd-note">Команды /рост и /рейтинг бот показывает только тому, кто их вызвал. Отчёт и тревоги он пишет в выбранный канал.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 3. Что умеет ===== -->
+    <section class="section" aria-labelledby="features-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Возможности</span>
+          <h2 class="h2" id="features-title">Что умеет Clan Radar</h2>
+        </div>
+        <div class="features" data-stagger="0.06">
+          <article class="feature" data-reveal>
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.4"/><path d="M3.5 19c.4-3 2.6-5 5.5-5s5.100 2 5.500 5M15.500 14.200c2.500-.5 4.600 1 5 4"/></svg></div>
+            <h3>До 25 соперников</h3>
+            <p>Добавляете клан по ссылке-приглашению на его публичный сервер. Бот следит за каждым.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17l5-5 4 3 7-8"/><path d="M15 7h5v5"/></svg></div>
+            <h3>Рост за любой период</h3>
+            <p>Сутки, неделя, месяц, год или свой срок до 365 дней. Видно, сколько людей пришло у вас и у соперников.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.500-3 8-7 10-4-2-7-5.500-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+            <h3>Состав и публичный сервер</h3>
+            <p>Сравнивает людей в роли команды с размером публичного сервера. Если бот есть у соперника, он считает роль сам. Иначе число можно вписать вручную.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4h10v4a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4M12 13v4M8 20h8"/></svg></div>
+            <h3>Рейтинг</h3>
+            <p>Места по участникам, людям в сети и росту. Видно, на каком месте вы и сколько не хватает до следующего.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4v16h16"/><path d="M8 15l3-4 3 2 5-6"/></svg></div>
+            <h3>График роста</h3>
+            <p>К ответу на /рост бот прикладывает график: ваш клан и до семи крупных соперников.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2.500"/><path d="M4 10h16M9 3v4M15 3v4"/></svg></div>
+            <h3>Недельный отчёт</h3>
+            <p>Раз в неделю в 12:00 по Москве бот пишет в выбранный канал рост с графиком и рейтинг. День недели выбираете вы.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 17V11a6 6 0 0 1 12 0v6l1.500 2h-15z"/><path d="M10 21h4"/></svg></div>
+            <h3>Тревоги</h3>
+            <p>Бот пишет, когда соперник вас обогнал, у него резкий всплеск за сутки, у вас падение или ссылка на соперника перестала работать. Порог можно менять.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.500"/><path d="M12 7v5l3 2"/></svg></div>
+            <h3>Снимки каждый час</h3>
+            <p>Каждый час бот записывает число участников и людей в сети. Из этой истории считаются рост и график.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 4. Кейс ===== -->
+    <section class="section section--tight" aria-labelledby="case-title">
+      <div class="container">
+        <div class="rd-case" data-reveal>
+          <div class="rd-case__num" aria-hidden="true"><b>25</b><span>кланов</span></div>
+          <div>
+            <span class="eyebrow">Кейс</span>
+            <h2 class="h3" id="case-title">Работает у UERITY TEAM</h2>
+            <p>Бот стоит на сервере клана UERITY TEAM и следит за 25 кланами-соперниками. Соперников добавили по ссылкам-приглашениям на их публичные серверы. Бот ведёт историю по часам и показывает, кто растёт быстрее.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 5. Команды ===== -->
+    <section class="section" aria-labelledby="commands-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Команды</span>
+          <h2 class="h2" id="commands-title">Команды бота</h2>
+          <p class="lead">Команды с пометкой «админам» работают у тех, у кого есть право «Управление сервером». Ответы видны только вам. Чтобы показать их всем в канале, добавьте параметр «всем».</p>
+        </div>
+        <div class="commands" data-reveal>
+          <div class="command"><code>/конкуренты добавить</code><p>Начать следить за сервером по ссылке-приглашению. Можно сразу указать, сколько людей у него в роли команды. <span class="rd-tag">админам</span></p></div>
+          <div class="command"><code>/конкуренты убрать</code><p>Перестать следить за выбранным сервером. <span class="rd-tag">админам</span></p></div>
+          <div class="command"><code>/конкуренты список</code><p>Показать, за кем следит бот. <span class="rd-tag">админам</span></p></div>
+          <div class="command"><code>/конкуренты команда</code><p>Указать, сколько людей в роли команды у соперника. Если бот есть на его сервере, выберите роль, и бот посчитает сам. <span class="rd-tag">админам</span></p></div>
+          <div class="command"><code>/рост</code><p>Сколько участников пришло у вас и у соперников. Период: сутки, 3 дня, неделя, 2 недели, месяц, 3 месяца, год или свой срок в днях. График можно выключить. <span class="rd-tag">админам</span></p></div>
+          <div class="command"><code>/рейтинг</code><p>Места по участникам, людям в сети или росту за выбранный срок. <span class="rd-tag">админам</span></p></div>
+          <div class="command"><code>/состав</code><p>Сколько людей в роли команды и сколько на публичном сервере. <span class="rd-tag">админам</span></p></div>
+          <div class="command"><code>/настройка команда</code><p>Выбрать роль команды на вашем сервере. <span class="rd-tag">админам</span></p></div>
+          <div class="command"><code>/настройка отчёт</code><p>Включить недельный отчёт: выбрать канал и день недели. Параметр «сейчас» присылает отчёт сразу, чтобы проверить права бота. <span class="rd-tag">админам</span></p></div>
+          <div class="command"><code>/настройка тревоги</code><p>Включить тревоги: выбрать канал и порог всплеска за сутки. По умолчанию порог 50 человек. <span class="rd-tag">админам</span></p></div>
+          <div class="command"><code>/помощь</code><p>Короткая справка: что умеет бот и как им пользоваться. <span class="rd-tag rd-tag--all">всем</span></p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 6. Как получить ===== -->
+    <section class="section section--alt" aria-labelledby="get-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Как получить</span>
+          <h2 class="h2" id="get-title">Бот выдаётся по запросу</h2>
+          <p class="lead">Публичной ссылки на бота нет. Он подключается к вашему серверу после личной договорённости.</p>
+        </div>
+        <ol class="rd-steps" data-stagger="0.1">
+          <li class="rd-step" data-reveal>
+            <h3>Пишете мне</h3>
+            <p>В личные сообщения в Discord или Telegram. Коротко расскажите про клан.</p>
+          </li>
+          <li class="rd-step" data-reveal>
+            <h3>Подключаю бота</h3>
+            <p>Бот приходит на ваш сервер. Вы присылаете ссылки-приглашения на серверы соперников, и мы добавляем их.</p>
+          </li>
+          <li class="rd-step" data-reveal>
+            <h3>Бот следит круглосуточно</h3>
+            <p>Каждый час он делает снимок и копит историю. Остаётся включить отчёт и тревоги в нужных каналах.</p>
+          </li>
+        </ol>
+        <div class="btn-row rd-steps__cta" data-reveal>
+          <a class="btn btn--accent" href="#contacts">Хочу такого бота</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 7. Другие боты ===== -->
+    <section class="section section--tight" aria-labelledby="others-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Другие боты</span>
+          <h2 class="h2" id="others-title">Ещё боты студии</h2>
+        </div>
+        <div class="other-bots" data-stagger="0.1">
+          <a class="other-bot" href="../analyser/" data-reveal>
+            <img src="../assets/img/avatars/analyser.webp" alt="" width="48" height="48" loading="lazy" decoding="async">
+            <div><strong>Rust server analyser</strong><span>Разбирает сервер и ставит оценку из 100</span></div>
+          </a>
+          <a class="other-bot" href="../ticket/" data-reveal>
+            <img src="../assets/img/avatars/ticket.webp" alt="" width="48" height="48" loading="lazy" decoding="async">
+            <div><strong>Clan Ticket Bot</strong><span>Заявки в клан: анкета, тикет и решение рекрутера</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Контакты (одинаковый блок на всех страницах; заголовок и текст можно менять под страницу) ===== -->
+    <section class="section contact-cta" id="contacts" aria-labelledby="contacts-title">
+      <div class="container">
+        <div class="contact-cta__box" data-reveal>
+          <span class="eyebrow">Контакты</span>
+          <h2 class="h2" id="contacts-title">Хотите следить за соперниками?</h2>
+          <p class="lead">Напишите в Discord или Telegram и расскажите про клан. Подключу бота к вашему серверу и добавим соперников.</p>
+          <div class="contact-list">
+            <a class="contact-chip" href="#contacts" data-contact="discord">
+              <span class="contact-chip__icon contact-chip__icon--discord"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.74 19.74 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></span>
+              <span><small>Discord</small>godz_1la</span>
+            </a>
+            <a class="contact-chip" href="https://t.me/PursuitOfGoals" data-contact="telegram">
+              <span class="contact-chip__icon contact-chip__icon--telegram"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.66 3.72 2.93 10.56c-1.21.49-1.2 1.16-.22 1.46l4.55 1.42 1.74 5.36c.21.58.11.81.72.81.47 0 .68-.21.94-.47l2.27-2.2 4.72 3.49c.87.48 1.5.23 1.71-.81l3.1-14.6c.32-1.27-.48-1.85-1.5-1.3zM8.6 13.2l9.03-5.7c.45-.27.86-.12.52.18l-7.73 6.98-.3 3.2-1.52-4.66z"/></svg></span>
+              <span><small>Telegram</small>@PursuitOfGoals</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+        <div>
+          <a class="brand" href="../">
+            <img src="../assets/logo/mark.svg" alt="" width="28" height="28">
+            <span>Wipe Studio</span>
+          </a>
+          <p class="site-footer__note">Боты, настройка и оформление Discord для кланов Rust.</p>
+        </div>
+        <div>
+          <h2>Боты</h2>
+          <ul>
+            <li><a href="../analyser/">Rust server analyser</a></li>
+            <li><a href="../ticket/">Clan Ticket Bot</a></li>
+            <li><a href="../radar/">Clan Radar</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Связаться</h2>
+          <ul>
+            <li><a href="#contacts" data-contact="discord">Discord: godz_1la</a></li>
+            <li><a href="https://t.me/PursuitOfGoals" data-contact="telegram">Telegram: @PursuitOfGoals</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <span>© <span data-year>2026</span> Wipe Studio</span>
+        <span>Не связано с Discord Inc. и Facepunch Studios.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js" defer></script>
+  <script src="../assets/js/discord.js" defer></script>
+  <script src="../assets/js/radar.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+# Служебное: остаётся только на компьютере, в интернет не попадает
+BRIEF.md
+tools/
+assets/logo/variants/
+
+# Мусор Windows
+Thumbs.db
+desktop.ini

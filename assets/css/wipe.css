@@ -1,0 +1,81 @@
+/* Стили страницы wipe/index.html */
+
+/* ---------- Шапка: часы обратного отсчёта справа ---------- */
+.wp-clock {
+  justify-self: center; width: min(100%, 460px); padding: clamp(20px, 3.5vw, 32px);
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-xl);
+  box-shadow: var(--shadow-2), inset 0 3px 0 var(--accent-fill);
+  display: grid; gap: var(--s-4);
+}
+.wp-clock__label { display: flex; align-items: center; gap: 8px; font-weight: 700; color: var(--accent); font-size: var(--fs-sm); }
+.wp-clock__label svg { width: 20px; height: 20px; flex: none; }
+.wp-clock__digits { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(6px, 1.4vw, 12px); }
+.wp-clock__unit {
+  display: grid; justify-items: center; gap: 4px; padding: clamp(10px, 2vw, 16px) 4px;
+  border-radius: var(--r-lg); background: var(--accent-soft);
+}
+.wp-clock__unit b {
+  font-size: clamp(1.75rem, 1.1rem + 2.4vw, 2.75rem); line-height: 1; letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums; color: var(--ink);
+}
+.wp-clock__unit span { font-size: var(--fs-xs); font-weight: 650; color: var(--ink-2); }
+.wp-clock__when { font-weight: 650; }
+.wp-clock__note { font-size: var(--fs-xs); color: var(--ink-2); }
+@media (max-width: 900px) { .wp-clock { justify-self: start; } }
+
+/* ---------- Демо ---------- */
+.wp-demo { max-width: 760px; margin-inline: auto; }
+.wp-tabs { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-bottom: var(--s-4); }
+.wp-tab {
+  min-height: 44px; padding: 0 18px; border-radius: var(--r-pill);
+  border: 1px solid var(--line-2); background: var(--surface); color: var(--ink);
+  font-size: var(--fs-sm); font-weight: 650; line-height: 1;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+.wp-tab:hover { border-color: var(--accent); }
+.wp-tab[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.wp-note { margin-top: var(--s-4); font-size: var(--fs-xs); color: var(--ink-2); }
+#wipe-demo { --dc-h: 600px; }
+#wipe-demo .dc__channel { overflow: hidden; text-overflow: ellipsis; }
+#wipe-demo .dc-embed { max-width: 100%; }
+#wipe-demo .dc-embed__desc, #wipe-demo .dc-field__value, #wipe-demo .dc-msg__text { overflow-wrap: anywhere; }
+#wipe-demo .dc-field + .dc-field { margin-top: 4px; }
+.wp-line { display: block; }
+.wp-t { background: rgba(255, 255, 255, 0.06); border-radius: 3px; padding: 0 2px; white-space: nowrap; }
+.wp-edited { color: var(--dc-muted); font-size: 10px; margin-left: 2px; }
+.wp-flash { animation: wp-flash 1.4s ease; border-radius: 4px; }
+@keyframes wp-flash { 0% { background: rgba(139, 92, 246, 0.35); } 100% { background: transparent; } }
+@media (max-width: 560px) {
+  #wipe-demo { --dc-h: 560px; }
+  .wp-tab { padding: 0 14px; }
+  #wipe-demo .dc__topic { display: none; }
+  #wipe-demo .dc-msg { grid-template-columns: minmax(0, 1fr); padding-inline: 10px; }
+  #wipe-demo .dc-msg__avatar { display: none; }
+  #wipe-demo .dc-reply::before { display: none; }
+  #wipe-demo .dc-embed { padding: 10px 12px 12px 10px; }
+}
+
+/* ---------- Команды ---------- */
+.wp-tag {
+  display: inline-block; margin-left: 6px; padding: 1px 8px; border-radius: var(--r-pill);
+  background: var(--surface-2); color: var(--ink-2); font-size: 0.75rem; font-weight: 650; white-space: nowrap; vertical-align: 1px;
+}
+.wp-tag--all { background: var(--accent-soft); color: var(--accent); }
+.command code { overflow-wrap: anywhere; }
+
+/* ---------- Как добавить ---------- */
+.wp-steps { list-style: none; display: grid; gap: var(--s-4); grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.wp-step { padding: var(--s-5); border-radius: var(--r-lg); background: var(--surface); border: 1px solid var(--line); display: grid; gap: var(--s-2); align-content: start; }
+.wp-step__num {
+  width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; margin-bottom: var(--s-2);
+  background: var(--accent-soft); color: var(--accent); font-weight: 750; font-size: var(--fs-md);
+}
+.wp-step h3 { font-size: 1.125rem; letter-spacing: -0.01em; }
+.wp-step p { color: var(--ink-2); font-size: var(--fs-sm); }
+.wp-howto-note { margin-top: var(--s-5); color: var(--ink-2); font-size: var(--fs-sm); max-width: 62ch; }
+.wp-cta { margin-top: var(--s-6); }
+@media (max-width: 900px) { .wp-steps { grid-template-columns: 1fr; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .wp-flash { animation: none; }
+}

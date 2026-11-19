@@ -49,6 +49,9 @@
   --radar: #0b7a6b;
   --radar-fill: #14a08c;
   --radar-soft: #def3ef;
+  --wipe: #6d4bd1;
+  --wipe-fill: #8b5cf6;
+  --wipe-soft: #eee8fd;
 
   /* Акцент текущей страницы (страница бота переопределяет) */
   --accent: var(--ink);
@@ -101,6 +104,7 @@
 .theme-analyser { --accent: var(--analyser); --accent-fill: var(--analyser-fill); --accent-soft: var(--analyser-soft); }
 .theme-ticket   { --accent: var(--ticket);   --accent-fill: var(--ticket-fill);   --accent-soft: var(--ticket-soft); }
 .theme-radar    { --accent: var(--radar);    --accent-fill: var(--radar-fill);    --accent-soft: var(--radar-soft); }
+.theme-wipe     { --accent: var(--wipe);     --accent-fill: var(--wipe-fill);     --accent-soft: var(--wipe-soft); }
 
 /* ---------- Сброс ---------- */
 *, *::before, *::after { box-sizing: border-box; }

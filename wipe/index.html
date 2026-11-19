@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wipe Announcer — отсчёт до вайпа на серверах Rust · Wipe Studio</title>
+  <meta name="description" content="Бесплатный бот для Discord: табло с обратным отсчётом до вайпа на серверах Rust, онлайн и очередь, принудительный вайп.">
+  <meta name="theme-color" content="#f7f6f2">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Wipe Studio">
+  <meta property="og:title" content="Wipe Announcer — отсчёт до вайпа на серверах Rust · Wipe Studio">
+  <meta property="og:description" content="Бесплатный бот для Discord: табло с обратным отсчётом до вайпа на серверах Rust, онлайн и очередь, принудительный вайп.">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:url" content="https://wipe-studio.github.io/wipe/">
+  <meta property="og:image" content="https://wipe-studio.github.io/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Wipe Studio — боты и оформление Discord для кланов Rust">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://wipe-studio.github.io/wipe/">
+  <link rel="icon" href="../assets/logo/mark.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/logo/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/logo/apple-touch-icon.png">
+  <link rel="preload" href="../assets/fonts/manrope-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/discord.css">
+  <link rel="stylesheet" href="../assets/css/wipe.css">
+  <script>document.documentElement.classList.add("js")</script>
+</head>
+<body class="theme-wipe">
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="../" aria-label="Wipe Studio — на главную">
+        <img src="../assets/logo/mark.svg" alt="" width="28" height="28">
+        <span>Wipe Studio</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Открыть меню"><span></span></button>
+      <nav class="nav" id="site-nav" aria-label="Главное меню">
+        <a href="../#bots" aria-current="page">Боты</a>
+        <a href="../#design">Оформление</a>
+        <a href="../#services">Услуги</a>
+        <a href="../#about">О студии</a>
+        <a href="#contacts">Контакты</a>
+        <a class="btn" href="#contacts">Написать</a>
+      </nav>
+      <a class="btn btn--sm btn--header" href="#contacts">Написать</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ===== 1. Шапка бота ===== -->
+    <section class="bot-hero" aria-labelledby="hero-title">
+      <div class="container bot-hero__grid">
+        <div data-reveal>
+          <nav class="breadcrumbs" aria-label="Хлебные крошки">
+            <a href="../">Главная</a> <span aria-hidden="true">→</span> <a href="../#bots">Боты</a> <span aria-hidden="true">→</span> <span aria-current="page">Wipe Announcer</span>
+          </nav>
+          <div class="bot-hero__id">
+            <img class="bot-hero__avatar" src="../assets/img/avatars/wipe.webp" alt="Аватарка Wipe Announcer" width="64" height="64">
+            <span class="badge">Бесплатно</span>
+          </div>
+          <h1 id="hero-title">Wipe Announcer</h1>
+          <p class="lead">Табло с обратным отсчётом до вайпа на ваших серверах Rust. Бот сам узнаёт, когда вайп, и обновляет табло.</p>
+          <div class="btn-row">
+            <a class="btn btn--accent" href="https://discord.com/oauth2/authorize?client_id=1572979047435079680&amp;scope=bot%20applications.commands&amp;permissions=85008" target="_blank" rel="noopener">Добавить бесплатно</a>
+            <a class="btn btn--ghost" href="#demo">Смотреть демо</a>
+          </div>
+        </div>
+
+        <div class="wp-clock" data-reveal="scale" aria-labelledby="clock-title">
+          <p class="wp-clock__label" id="clock-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12M6 21h12M7 3c0 5 10 5 10 9s-10 4-10 9M17 3c0 5-10 5-10 9s10 4 10 9"/></svg>
+            До принудительного вайпа
+          </p>
+          <div class="wp-clock__digits" id="wp-clock" role="timer" aria-live="off">
+            <div class="wp-clock__unit"><b data-u="d">—</b><span>дней</span></div>
+            <div class="wp-clock__unit"><b data-u="h">—</b><span>часов</span></div>
+            <div class="wp-clock__unit"><b data-u="m">—</b><span>минут</span></div>
+            <div class="wp-clock__unit"><b data-u="s">—</b><span>секунд</span></div>
+          </div>
+          <p class="wp-clock__when" id="wp-clock-when">Первый четверг месяца</p>
+          <p class="wp-clock__note">Раз в месяц выходит обновление Rust, и вайпаются все серверы: первый четверг месяца, 22:00 по Москве зимой и 21:00 летом.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 2. Живое демо ===== -->
+    <section class="section section--alt" id="demo" aria-labelledby="demo-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Демо</span>
+          <h2 class="h2" id="demo-title">Так выглядит бот</h2>
+          <p class="lead">Выберите сцену. Atlas и Vital — настоящие серверы, бот ставит их на новое табло сам. Время вайпа посчитано по правде, онлайн здесь для примера, Orbit — выдуманный сервер.</p>
+        </div>
+
+        <div class="wp-demo" data-reveal>
+          <div class="wp-tabs" role="group" aria-label="Сцены демо">
+            <button class="wp-tab" type="button" data-scene="0" aria-pressed="true">Табло</button>
+            <button class="wp-tab" type="button" data-scene="1" aria-pressed="false">/вайп создать</button>
+            <button class="wp-tab" type="button" data-scene="2" aria-pressed="false">/вайп добавить</button>
+            <button class="wp-tab" type="button" data-scene="3" aria-pressed="false">Вайп идёт</button>
+          </div>
+
+          <div class="dc" id="wipe-demo">
+            <div class="dc__bar">
+              <span class="dc__dots" aria-hidden="true"></span>
+              <span class="dc__hash" aria-hidden="true">#</span>
+              <span class="dc__channel">⏳・ᴡɪᴘᴇs</span>
+              <span class="dc__topic">Табло вайпов Rust — обновляется само</span>
+            </div>
+            <button class="dc-replay" type="button" data-dc-action="replay">↺ Сначала</button>
+            <div class="dc__log" role="log" aria-live="polite" aria-label="Сообщения бота Wipe Announcer"></div>
+            <div class="dc__typing" aria-hidden="true"></div>
+            <div class="dc__input" aria-hidden="true">У вас нет прав писать в этом канале</div>
+          </div>
+          <p class="wp-note">Табло — одно сообщение, бот сам правит его. Ответы на команды /вайп видит только тот, кто их вызвал.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 3. Что умеет ===== -->
+    <section class="section" aria-labelledby="features-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Возможности</span>
+          <h2 class="h2" id="features-title">Что умеет Wipe Announcer</h2>
+        </div>
+        <div class="features" data-stagger="0.06">
+          <article class="feature" data-reveal>
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/></svg></div>
+            <h3>Сам узнаёт расписание</h3>
+            <p>Сервер Rust сообщает, когда был вайп и как часто он бывает. Бот читает это сам: каждую неделю, раз в 2 недели или раз в месяц.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2.5"/><path d="M4 10h16M9 3v4M15 3v4M12 13.5v3"/></svg></div>
+            <h3>Принудительный вайп</h3>
+            <p>Помнит про первый четверг месяца. Если у сервера в этот день и так вайп по расписанию, бот покажет один вайп, а не два.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.4"/><path d="M3.5 19c.4-3 2.6-5 5.5-5s5.1 2 5.5 5M15.5 14.2c2.5-.5 4.6 1 5 4"/></svg></div>
+            <h3>Онлайн и очередь</h3>
+            <p>Сколько игроков на сервере, сколько мест и сколько людей в очереди. Обновляется раз в 5 минут, а около вайпа — каждую минуту.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 5v6h-6"/></svg></div>
+            <h3>«Вайп идёт» и «Вайп был»</h3>
+            <p>Время вайпа пришло, а карта ещё старая — на табло «Вайп идёт». Как только сервер поднялся с новой картой — «Вайп был, заходите!».</p>
+          </article>
+          <article class="feature" data-reveal>
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h10M4 17h7"/><path d="M17 14v6M14 17h6"/></svg></div>
+            <h3>Канал одной командой</h3>
+            <p>/вайп создать делает категорию и канал, где писать может только бот, и сразу ставит туда табло.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="6" rx="2"/><rect x="3" y="14" width="18" height="6" rx="2"/><path d="M7 7h.01M7 17h.01"/></svg></div>
+            <h3>До 10 серверов</h3>
+            <p>Сервер добавляется по адресу, как в client.connect. Ключи и регистрация не нужны. Серверы стоят по порядку: ближайший вайп — сверху.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.5 2.6 3.5 5.4 3.5 8.5s-1 5.9-3.5 8.5c-2.5-2.6-3.5-5.4-3.5-8.5s1-5.9 3.5-8.5z"/></svg></div>
+            <h3>Время в вашем поясе</h3>
+            <p>Discord сам показывает время вайпа в часовом поясе того, кто смотрит. Игрокам из разных стран не нужно ничего пересчитывать.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20l-7-7a4.5 4.5 0 0 1 6.4-6.4l.6.6.6-.6A4.5 4.5 0 0 1 19 13z"/></svg></div>
+            <h3>Два сервера уже на табло</h3>
+            <p>На новом табло сразу стоят Atlas EU 2X Monthly и Vital Rust EU 2X Monthly. Лишний убирается одной командой.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 4. Команды ===== -->
+    <section class="section section--alt" aria-labelledby="commands-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Команды</span>
+          <h2 class="h2" id="commands-title">Команды бота</h2>
+          <p class="lead">Команды /вайп работают у тех, у кого есть право «Управлять сервером». Ответы видны только вам. Всем остальным достаточно смотреть на табло.</p>
+        </div>
+        <div class="commands" data-reveal>
+          <div class="command"><code>/вайп создать</code><p>Создать категорию и канал для табло и поставить туда табло. Названия можно поменять. <span class="wp-tag">админам</span></p></div>
+          <div class="command"><code>/вайп табло</code><p>Поставить табло в выбранный канал. Здесь же можно указать часовой пояс для расписаний. <span class="wp-tag">админам</span></p></div>
+          <div class="command"><code>/вайп добавить</code><p>Добавить сервер по адресу, как в client.connect. Расписание и своё название можно указать сразу или оставить боту. <span class="wp-tag">админам</span></p></div>
+          <div class="command"><code>/вайп расписание</code><p>Поменять расписание сервера: авто, каждую неделю, раз в 2 недели или раз в месяц. <span class="wp-tag">админам</span></p></div>
+          <div class="command"><code>/вайп дата</code><p>Записать разовую дату вайпа поверх расписания. <span class="wp-tag">админам</span></p></div>
+          <div class="command"><code>/вайп название</code><p>Своё название сервера на табло. <span class="wp-tag">админам</span></p></div>
+          <div class="command"><code>/вайп убрать</code><p>Убрать сервер с табло. <span class="wp-tag">админам</span></p></div>
+          <div class="command"><code>/вайп список</code><p>Какие серверы на табло и какое у них расписание. <span class="wp-tag">админам</span></p></div>
+          <div class="command"><code>/вайп-помощь</code><p>Короткая справка: что умеет бот и с чего начать. <span class="wp-tag wp-tag--all">всем</span></p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 5. Как добавить ===== -->
+    <section class="section" id="how" aria-labelledby="how-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Старт</span>
+          <h2 class="h2" id="how-title">Как добавить</h2>
+          <p class="lead">Три шага, около минуты.</p>
+        </div>
+        <ol class="wp-steps" data-stagger="0.1">
+          <li class="wp-step" data-reveal>
+            <span class="wp-step__num" aria-hidden="true">1</span>
+            <h3>Добавьте бота</h3>
+            <p>Нажмите «Добавить бесплатно». На странице Discord выберите сервер, где у вас есть право «Управлять сервером».</p>
+          </li>
+          <li class="wp-step" data-reveal>
+            <span class="wp-step__num" aria-hidden="true">2</span>
+            <h3>Напишите /вайп создать</h3>
+            <p>Бот сделает канал и поставит табло. На нём уже будут Atlas и Vital.</p>
+          </li>
+          <li class="wp-step" data-reveal>
+            <span class="wp-step__num" aria-hidden="true">3</span>
+            <h3>Добавьте свои серверы</h3>
+            <p>Команда /вайп добавить и адрес сервера. Лишние уберите командой /вайп убрать.</p>
+          </li>
+        </ol>
+        <p class="wp-howto-note" data-reveal>Боту нужны права видеть канал, писать, вставлять ссылки и читать историю. Право «Управлять каналами» нужно только для /вайп создать.</p>
+        <div class="btn-row wp-cta" data-reveal>
+          <a class="btn btn--accent" href="https://discord.com/oauth2/authorize?client_id=1572979047435079680&amp;scope=bot%20applications.commands&amp;permissions=85008" target="_blank" rel="noopener">Добавить бесплатно</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 6. Другие боты ===== -->
+    <section class="section section--tight" aria-labelledby="others-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Другие боты</span>
+          <h2 class="h2" id="others-title">Ещё боты студии</h2>
+        </div>
+        <div class="other-bots" data-stagger="0.1">
+          <a class="other-bot" href="../analyser/" data-reveal>
+            <img src="../assets/img/avatars/analyser.webp" alt="" width="48" height="48" loading="lazy" decoding="async">
+            <div><strong>Rust server analyser</strong><span>Разбирает сервер и ставит оценку из 100</span></div>
+          </a>
+          <a class="other-bot" href="../ticket/" data-reveal>
+            <img src="../assets/img/avatars/ticket.webp" alt="" width="48" height="48" loading="lazy" decoding="async">
+            <div><strong>Clan Ticket Bot</strong><span>Заявки в клан: анкета, тикет и решение рекрутера</span></div>
+          </a>
+          <a class="other-bot" href="../radar/" data-reveal>
+            <img src="../assets/img/avatars/radar.webp" alt="" width="48" height="48" loading="lazy" decoding="async">
+            <div><strong>Clan Radar</strong><span>Следит за ростом кланов-соперников</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Контакты (одинаковый блок на всех страницах; заголовок и текст можно менять под страницу) ===== -->
+    <section class="section contact-cta" id="contacts" aria-labelledby="contacts-title">
+      <div class="container">
+        <div class="contact-cta__box" data-reveal>
+          <span class="eyebrow">Контакты</span>
+          <h2 class="h2" id="contacts-title">Есть идея для бота?</h2>
+          <p class="lead">Напишите в Discord или Telegram: что добавить в Wipe Announcer или какой бот нужен вашему клану.</p>
+          <div class="contact-list">
+            <a class="contact-chip" href="#contacts" data-contact="discord">
+              <span class="contact-chip__icon contact-chip__icon--discord"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.74 19.74 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></span>
+              <span><small>Discord</small>godz_1la</span>
+            </a>
+            <a class="contact-chip" href="https://t.me/PursuitOfGoals" data-contact="telegram">
+              <span class="contact-chip__icon contact-chip__icon--telegram"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.66 3.72 2.93 10.56c-1.21.49-1.2 1.16-.22 1.46l4.55 1.42 1.74 5.36c.21.58.11.81.72.81.47 0 .68-.21.94-.47l2.27-2.2 4.72 3.49c.87.48 1.5.23 1.71-.81l3.1-14.6c.32-1.27-.48-1.85-1.5-1.3zM8.6 13.2l9.03-5.7c.45-.27.86-.12.52.18l-7.73 6.98-.3 3.2-1.52-4.66z"/></svg></span>
+              <span><small>Telegram</small>@PursuitOfGoals</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+        <div>
+          <a class="brand" href="../">
+            <img src="../assets/logo/mark.svg" alt="" width="28" height="28">
+            <span>Wipe Studio</span>
+          </a>
+          <p class="site-footer__note">Боты, настройка и оформление Discord для кланов Rust.</p>
+        </div>
+        <div>
+          <h2>Боты</h2>
+          <ul>
+            <li><a href="../analyser/">Rust server analyser</a></li>
+            <li><a href="../ticket/">Clan Ticket Bot</a></li>
+            <li><a href="../radar/">Clan Radar</a></li>
+            <li><a href="../wipe/">Wipe Announcer</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Связаться</h2>
+          <ul>
+            <li><a href="#contacts" data-contact="discord">Discord: godz_1la</a></li>
+            <li><a href="https://t.me/PursuitOfGoals" data-contact="telegram">Telegram: @PursuitOfGoals</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <span>© <span data-year>2026</span> Wipe Studio</span>
+        <span>Не связано с Discord Inc. и Facepunch Studios.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js" defer></script>
+  <script src="../assets/js/discord.js" defer></script>
+  <script src="../assets/js/wipe.js" defer></script>
+</body>
+</html>
